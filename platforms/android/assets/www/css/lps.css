@@ -1,0 +1,96 @@
+@CHARSET "ISO-8859-1";
+/* CSS Document */
+* {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+body {
+	font-family: Helvetica, sans-serif;
+	margin: 0;
+	font-size: 13px;
+	line-height: 1.231;
+	color: #1B6B39;
+	overflow-x: hidden;
+}
+.fundo_menu{
+	background: url(../img/canstockphoto6936926_comp.jpg);
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100%;	
+	background-size: 100% 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+.menu{
+	width: 350px;
+	height: 400px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -175px;
+	margin-top: -150px;
+	z-index: 3;	
+}
+.menu li{
+	list-style: none;
+	padding-top: 15px;
+}
+.botao{
+	color: #FDF9BC;
+	width: 30%;
+	height: 40px;
+	font-family:'Snap ITC', sans-serif;
+	font-size: 18px;
+	text-align: center;
+	-webkit-border-radius: 10px;
+	-webkit-box-shadow: inset 0 1px 1px -1px white, 0 1px 5px rgba(0, 0, 0, .5);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F20018), to(#970007));
+	-webkit-transition: left 200ms ease-in;
+	border-color: #D40016;
+	-webkit-transform: translate3d(0, 0, 0);
+}
+.fundo_jogo{
+	background: url(../img/marine.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 1;
+}
+.concha{
+	background: url(../img/shell-mesh.png);
+	background-repeat: no-repeat;
+	width: 360px;
+    height: 360px;
+	position: fixed;
+	z-index: 2;
+	top: 50%;
+	left: 50%;
+	margin-top: -110px;
+	margin-left: -180px;
+		
+}
+.botao_passar{
+	color: #FDF9BC;
+	width: 20%;
+	height: 30px;
+	position: fixed;
+	z-index: 2;
+	top: 100%;
+	left: 10px;
+	margin-top: -35px;	
+	font-family:'Snap ITC', sans-serif;
+	font-size: 18px;
+	text-align: center;
+	-webkit-border-radius: 10px;
+	-webkit-box-shadow: inset 0 1px 1px -1px white, 0 1px 5px rgba(0, 0, 0, .5);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F20018), to(#970007));
+	-webkit-transition: left 200ms ease-in;
+	border-color: #D40016;
+	-webkit-transform: translate3d(0, 0, 0);
+}
