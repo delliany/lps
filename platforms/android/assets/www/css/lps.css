@@ -11,8 +11,23 @@ body {
 	margin: 0;
 	font-size: 13px;
 	line-height: 1.231;
-	color: #1B6B39;
+	color: #000;
 	overflow-x: hidden;
+}
+.titulo{
+	font-family:'Snap ITC', sans-serif;
+	font-size: 28px;
+	text-align: center;		
+	color: #F20018;
+	text-shadow: 2px -2px #000; 
+/*    text-shadow: 0 0 10px #970007, 0 -5px 10px #970007, 
+	0 0 10px #970007, -10px 0 30px #970007, 
+	10px 0 30px #970007; */
+	top: 15%;
+	left: 0;
+	width: 100%;
+	position: fixed;
+
 }
 .fundo_menu{
 	background: url(../img/canstockphoto6936926_comp.jpg);
@@ -26,22 +41,39 @@ body {
 	z-index: 2;
 }
 .menu{
-	width: 350px;
-	height: 400px;
+	width: 55%;
+	height: 35%;
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin-left: -175px;
-	margin-top: -150px;
+	margin-left: 23%;
+	margin-right: 25%;
+	margin-top: 45%;
+	margin-bottom: 25%;
 	z-index: 3;	
+	text-align: center;
+/*	background-color:#F3CCCC;*/
 }
 .menu li{
 	list-style: none;
-	padding-top: 15px;
+	padding: 5px 0px; 
+}
+.menu li p{
+	font-size: 16px;
+	font-weight: bold;
+}
+.ajuda{
+	margin-top: -55px;
+	padding: 0 10px;
+	text-align: justify;
+	overflow-y: auto;
+	overflow-x: hidden;
+	height: 133%;
+	display: block;	
+	font-size: 14px;
+	font-weight: bold;
 }
 .botao{
 	color: #FDF9BC;
-	width: 30%;
+	width: 80%;
 	height: 40px;
 	font-family:'Snap ITC', sans-serif;
 	font-size: 18px;
@@ -61,6 +93,7 @@ body {
 	height: 100%;
 	position: fixed;
 	z-index: 1;
+	opacity: 0.8;
 }
 .concha{
 	background: url(../img/shell-mesh.png);
@@ -93,4 +126,12 @@ body {
 	-webkit-transition: left 200ms ease-in;
 	border-color: #D40016;
 	-webkit-transform: translate3d(0, 0, 0);
+}
+h1{
+	font-family:'Snap ITC', sans-serif;
+	color: #F20018;	
+	top: 0;
+	position: fixed;
+	text-align: center;
+	width: 100%;
 }
