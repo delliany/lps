@@ -3,58 +3,25 @@ var perolasFila2;
 var perolasFila3;
 var fila = 0;
 var qtde = 0;
-var perolas = [];
-var ListPerolas = [[]];
-var list = 
-    {
-		perolas:
-		[
-			{
-				valor:1
-			}
-		]
-	};
+var ListPerolas = [];
 
 function initPerolas()
 {
-/*    var obj = [{
-        'row1' : [
-			{
-              'key1' : 'input1'
-            
-			},
-			{
-			  'key2' : 'inpu2'	
-			}
-			]
-    }];
-alert(obj.length);
-alert(obj[0].row1[0].key1);
-
-*/
 	var linhas = document.getElementsByTagName('ul');
 	var colunas;
 	
 	for(var aux=0; aux<linhas.length; aux++)
 	{
 		colunas = linhas.item(aux).getElementsByTagName('li');
+		ListPerolas[aux] = [];
 		
 		for(var cont=0; cont<colunas.length; cont++)
 		{
-			list[aux].perolas[cont].valor = 1;
-		}
-	}
-	alert(list.length);
-	for(var aux=0; aux<ListPerolas.length; aux++)
-	{
-		alert(ListPerolas[aux].numero.length);
-		for(var cont=0; cont<ListPerolas[aux].length; cont++)
-		{
-			//alert(ListPerolas[aux][cont]);
+			ListPerolas[aux][cont] = 1;
 		}
 	}
 }
-/*
+
 function jogarOponente(nivel)
 {
 	switch(nivel)
@@ -120,7 +87,7 @@ function retiraPerola()
 {
 	for(var aux = 0; aux < 5; aux++)
 	{
-		if(((controller.buscarValorPerola(fila, aux)) == 0)&&(qtde > 0)){
+		if(ListPerolas(fila, aux) == 0 && qtde > 0){
 			controller.retirarPerola(fila, aux);
 			qtde--;
 		}
@@ -135,18 +102,18 @@ function estrategiaJogo()
 	var binN1,binN2,binN3,somaS;
 	var valor1,valor2,valor3,aux = 0,aux2 = 0,somaI;
 
-	binN1 = Integer.toBinaryString(perolasFila1);
-	binN2 = Integer.toBinaryString(perolasFila2);
-	binN3 = Integer.toBinaryString(perolasFila3);
+	binN1 = perolasFila1.toString(2);
+	binN2 = perolasFila2.toString(2);
+	binN3 = perolasFila3.toString(2);
 
-	valor1 = Integer.parseInt(binN1);
-	valor2 = Integer.parseInt(binN2);
-	valor3 = Integer.parseInt(binN3);
+	valor1 = binN1.parseInt();
+	valor2 = binN2.parseInt();
+	valor3 = binN3.parseInt();
 
 	somaI = valor1+valor2+valor3;
-	somaS = Integer.toString(somaI);
+	somaS = somaI.toString();
 
-	for(int cont = 0; cont < somaS.length(); cont++)
+	for(var cont = 0; cont < somaS.length(); cont++)
 	{
 		if((somaS.charAt(cont)== '1')||(somaS.charAt(cont)== '3')){
 			aux++;
@@ -202,7 +169,7 @@ function estrategiaJogo()
 	}
 }
 
-function combinarValores(int fila1, int fila2, String fila3)
+function combinarValores(fila1,fila2,fila3)
 {
 	var filaAux, somaS;
 	var somaI, valor1, valor2;
@@ -211,7 +178,7 @@ function combinarValores(int fila1, int fila2, String fila3)
 
 	somaS = somaI.toString();
 	
-	for(int cont = 0; cont < somaS.length(); cont++)
+	for(var cont = 0; cont < somaS.length(); cont++)
 	{
 		if(somaS.charAt(cont)== '1'){
 			filaAux = filaAux+'1';
@@ -369,4 +336,4 @@ function jogadaExcecao()
 	}
 	
 	return 6;
-}*/
+}
