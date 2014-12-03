@@ -135,3 +135,25 @@ h1{
 	text-align: center;
 	width: 100%;
 }
+.perola{
+	background-image: url(../img/perola.png);
+	background-repeat: no-repeat;
+	background-size: 37px 37px;
+	width: 37px;
+	height: 37px;	
+}
+.box_perolas{
+	position: fixed;
+	z-index: 5;	
+	top: 50%;
+	left: 50%;
+	width: 300px;
+	height: 120px;
+	margin-left: -170px;
+	margin-top: 25px;
+}
+.box_perolas li{
+    list-style: none;
+   	display: inline-block;
+	margin-top: -10px;
+}
