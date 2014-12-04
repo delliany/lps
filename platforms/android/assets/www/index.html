@@ -7,10 +7,40 @@
 <title>Menu</title>
 <link href="css/reset.css" rel="stylesheet" type="text/css">
 <link href="css/lps.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/lps.js"></script>
+<!--<script type="text/javascript" src="cordova.js"></script>-->
+<script>
+$(document).ready(function(e) 
+{
+	$('.botao').click(function()
+	{
+	  	switch($(this).val())
+		{
+			case 'Jogar':
+				window.location = 'jogo.html';
+				break;
+			case 'Opções':
+				window.location = 'opcoes.html';
+				break;
+			case 'Ajuda':
+				window.location = 'ajuda.html';
+				break;
+			case 'Placar':
+				window.location = 'placar.html';
+				break;
+			case 'Sobre':
+				window.location = 'sobre.html';
+		}
+	});
+});
+</script>
 </head>
 <body>
+<audio controls loop style="display:none">
+  <source src="audio/somJogo.mp3" type="audio/mp3">
+</audio>
 <div class="fundo_menu">
-
   <div class="menu">
       <p class="titulo">Last Pearl to Shine</p>
     <ul>

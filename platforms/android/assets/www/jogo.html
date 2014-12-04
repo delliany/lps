@@ -6,10 +6,53 @@
 <meta name="viewport" content="width=device-width, user-scalable=no" />
 <title>Jogo</title>
 <link href="css/lps.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/lps.js"></script>
+<script>
+var filaEscolhida = -1;
+var fileira;
+var coluna;
+
+$(document).ready(function(e) 
+{
+	initPerolas();
+	
+	$('.perola').click(function(event)
+	{
+		event.preventDefault();
+		fileira = this.id.slice(0,1);
+		coluna = this.id.slice(1);
+		
+		if ((filaEscolhida == fileira) || (filaEscolhida == -1)) {
+			if (listaPerolas[fileira][coluna] == 1) {
+				
+				retirarPerola(fileira, coluna);
+				filaEscolhida = fileira;
+				
+				if(isUltimaPerola()){
+			   		alert('vc perdeu');
+			    }
+			}
+		}
+	});
+	
+	$('.botao_passar').click(function ()
+	{
+		if(parseInt(filaEscolhida) != -1){
+			
+			filaEscolhida = -1;
+			jogarOponente(3);
+			
+			if(isUltimaPerola()){
+			   alert('vc ganhou');
+			}
+		}
+	});
+});
+</script>
 </head>
 <body>
-<audio controls autoplay loop style="display:none">
+<audio controls loop style="display:none">
   <source src="audio/somJogo.mp3" type="audio/mp3">
 </audio>
 <div class="fundo_jogo"></div>
@@ -18,29 +61,24 @@
 </div>
 <div class="box_perolas" align="center">
 <ul>
-  <li class="perola"></li>
-  <li class="perola"></li>
-  <li class="perola"></li>
+  <li class="perola" id="00"></li>
+  <li class="perola" id="01"></li>
+  <li class="perola" id="02"></li>
 </ul>
 <ul>
-  <li class="perola"></li>
-  <li class="perola"></li>
-  <li class="perola"></li>
-  <li class="perola"></li>
+  <li class="perola" id="10"></li>
+  <li class="perola" id="11"></li>
+  <li class="perola" id="12"></li>
+  <li class="perola" id="13"></li>
 </ul>
 <ul>
-  <li class="perola"></li>
-  <li class="perola"></li>
-  <li class="perola"></li>
-  <li class="perola"></li>
-  <li class="perola"></li>
+  <li class="perola" id="20"></li>
+  <li class="perola" id="21"></li>
+  <li class="perola" id="22"></li>
+  <li class="perola" id="23"></li>
+  <li class="perola" id="24"></li>
 </ul>
 </div>
   <input type="button" class="botao_passar" value="Passar">
-  <script>
- 
-   initPerolas();
-
-</script>
 </body>
 </html>

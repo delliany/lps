@@ -3,7 +3,24 @@ var perolasFila2;
 var perolasFila3;
 var fila = 0;
 var qtde = 0;
-var ListPerolas = [];
+var listaPerolas = [];
+
+$(document).ready(function(e) 
+{
+	if(!window.localStorage.getItem('som')){
+		window.localStorage.setItem('som', true);
+	}
+	
+	if(!window.localStorage.getItem('nivel')){
+		window.localStorage.setItem('nivel', 1);
+	}
+	
+	if(window.localStorage.getItem('som') == false){
+		$('audio').trigger('pause');
+	}else{
+		$('audio').trigger('play');
+	}
+});
 
 function initPerolas()
 {
@@ -13,11 +30,11 @@ function initPerolas()
 	for(var aux=0; aux<linhas.length; aux++)
 	{
 		colunas = linhas.item(aux).getElementsByTagName('li');
-		ListPerolas[aux] = [];
+		listaPerolas[aux] = [];
 		
 		for(var cont=0; cont<colunas.length; cont++)
 		{
-			ListPerolas[aux][cont] = 1;
+			listaPerolas[aux][cont] = 1;
 		}
 	}
 }
@@ -47,7 +64,7 @@ function jogoFacil()
 		escolhaAletoria();
 	}
 
-	retiraPerola();
+	jogadaMaquina();
 }
 
 function jogoDificil()
@@ -55,13 +72,12 @@ function jogoDificil()
 	var retorno;
 
 	retorno = isExcecao();
-
-	if (retorno == false) {
+	
+	if (!retorno) {
 		estrategiaJogo();
-			
 	}
 
-	retiraPerola();
+	jogadaMaquina();
 }
 
 function jogoMedio()
@@ -80,42 +96,59 @@ function jogoMedio()
 		}
 	}	
 
-	retiraPerola();
+	jogadaMaquina();
 }
 
-function retiraPerola()
+function retirarPerola(linha, coluna)
 {
-	for(var aux = 0; aux < 5; aux++)
+	var id = linha.toString().concat('',coluna.toString());
+
+	listaPerolas[linha][coluna] = 0;
+	$('#'+id).fadeOut(150);
+}
+
+function jogadaMaquina()
+{
+	for(var aux = 0; aux < listaPerolas[fila].length; aux++)
 	{
-		if(ListPerolas(fila, aux) == 0 && qtde > 0){
-			controller.retirarPerola(fila, aux);
+		if(listaPerolas[fila][aux] == 1 && qtde > 0){
+			retirarPerola(fila, aux);
 			qtde--;
 		}
+		
 		if(qtde < 1){
-			return;
+		   return;
 		}
 	}
 }
 
 function estrategiaJogo()
 {
-	var binN1,binN2,binN3,somaS;
-	var valor1,valor2,valor3,aux = 0,aux2 = 0,somaI;
+	var binN1;
+	var binN2;
+	var binN3;
+	var somaS;
+	var valor1;
+	var valor2;
+	var valor3;
+	var aux = 0;
+	var aux2 = 0;
+	var somaI;
 
 	binN1 = perolasFila1.toString(2);
 	binN2 = perolasFila2.toString(2);
 	binN3 = perolasFila3.toString(2);
 
-	valor1 = binN1.parseInt();
-	valor2 = binN2.parseInt();
-	valor3 = binN3.parseInt();
+	valor1 = parseInt(binN1);
+	valor2 = parseInt(binN2);
+	valor3 = parseInt(binN3);
 
 	somaI = valor1+valor2+valor3;
 	somaS = somaI.toString();
 
-	for(var cont = 0; cont < somaS.length(); cont++)
+	for(var cont = 0; cont < somaS.length; cont++)
 	{
-		if((somaS.charAt(cont)== '1')||(somaS.charAt(cont)== '3')){
+		if((somaS.charAt(cont) == '1')||(somaS.charAt(cont) == '3')){
 			aux++;
 		}
 	}
@@ -154,15 +187,18 @@ function estrategiaJogo()
 						}
 				}
 			}	
+			
 			break;
 		default:
 			qtde = combinarValores(valor1,valor2,binN3);
 			fila = 2;
+			
 			if(qtde == -1){
 				qtde = combinarValores(valor1,valor3,binN2);
 				fila = 1;
+				
 				if(qtde == -1){
-					qtde = combinarValores(valor2,valor3,binN1);	
+					qtde = combinarValores(valor2,valor3,binN1);
 					fila = 0;
 				}
 			}
@@ -171,25 +207,28 @@ function estrategiaJogo()
 
 function combinarValores(fila1,fila2,fila3)
 {
-	var filaAux, somaS;
-	var somaI, valor1, valor2;
+	var filaAux = '';
+	var somaS;
+	var somaI;
+	var valor1;
+	var valor2;
 
 	somaI = fila1+fila2;
 
 	somaS = somaI.toString();
 	
-	for(var cont = 0; cont < somaS.length(); cont++)
+	for(var cont = 0; cont < somaS.length; cont++)
 	{
-		if(somaS.charAt(cont)== '1'){
+		if(somaS.charAt(cont) == '1'){
 			filaAux = filaAux+'1';
-		}else if((somaS.charAt(cont)== '0')||
-				(somaS.charAt(cont)== '2')){
+		}else if((somaS.charAt(cont) == '0')||
+				(somaS.charAt(cont) == '2')){
 			filaAux = filaAux+'0';
 		}
 	}
 
-	valor1 = Integer.parseInt(filaAux, 2);
-	valor2 = Integer.parseInt(fila3, 2);
+	valor1 = parseInt(filaAux,2);
+	valor2 = parseInt(fila3,2);
 
 	if(valor1 > valor2){
 	   return -1;
@@ -250,17 +289,20 @@ function isExcecao()
 		case 6:		
 			return false;
 	}
+	
 	return true;
 }
 
 function escolhaAletoria()
 {
-	Random rnd = new Random();
-	int cont = 0, aux = 0, perolas = 0;
+	var cont = 0;
+	var aux = 0;
+	var perolas = 0;
 	
 	while(aux == 0)
 	{
-		fila = rnd.nextInt(3);
+		fila = Math.floor(Math.random() * 3);
+		
 		switch(fila)
 		{
 			case 0:
@@ -275,25 +317,27 @@ function escolhaAletoria()
 				cont = 5;
 				perolas = perolasFila3;
 		}
+		
 		aux = retornarPerolasFila(fila,cont);
 	}
+	
 	while(qtde == 0)
 	{
 		if(perolas == 1){
 			qtde = 1;
 		}else{
-			qtde = rnd.nextInt(perolas);
+			qtde = Math.floor(Math.random() * perolas);
 		}
 	}
 }
 
-function retornarPerolasFila(int fileira, int qtde)
+function retornarPerolasFila(fileira, qtde)
 {
 	var cont = 0;
 	
-	for(int aux = 0; aux < qtde; aux++)
+	for(var aux = 0; aux < qtde; aux++)
 	{
-		if(controller.buscarValorPerola(fileira, aux) == 0){
+		if(listaPerolas[fileira][aux] == 1){
 			cont++;
 		}
 	}
@@ -301,6 +345,7 @@ function retornarPerolasFila(int fileira, int qtde)
 	if(cont > 0){
 		return cont;
 	}
+	
 	return 0;
 }
 
@@ -336,4 +381,25 @@ function jogadaExcecao()
 	}
 	
 	return 6;
+}
+
+function isUltimaPerola()
+{
+	var numPerolas = 0;
+
+	for(var aux = 0; aux < listaPerolas.length; aux++)
+	{
+		for(var cont = 0; cont < listaPerolas[aux].length; cont++)
+		{
+			if(listaPerolas[aux][cont] == 1){
+				numPerolas++;
+			}
+		}
+	}
+	
+	if(numPerolas > 0){
+		return false;
+	}
+	
+	return true;
 }
