@@ -12,9 +12,18 @@
 var filaEscolhida = -1;
 var fileira;
 var coluna;
+var nivel;
 
 $(document).ready(function(e) 
 {
+	nivel = window.localStorage.getItem('nivel') || 1;
+	
+	if(nivel == '2'){
+		$('.titulo').text('Nível Médio');
+	}else if(nivel == '3'){
+		$('.titulo').text('Nível Difícil');
+	}
+	
 	initPerolas();
 	
 	$('.perola').click(function(event)
@@ -30,7 +39,7 @@ $(document).ready(function(e)
 				filaEscolhida = fileira;
 				
 				if(isUltimaPerola()){
-			   		alert('vc perdeu');
+			   		atualizarPlacar(nivel, 0);
 			    }
 			}
 		}
@@ -41,10 +50,10 @@ $(document).ready(function(e)
 		if(parseInt(filaEscolhida) != -1){
 			
 			filaEscolhida = -1;
-			jogarOponente(3);
+			jogarOponente(nivel);
 			
 			if(isUltimaPerola()){
-			   alert('vc ganhou');
+			   atualizarPlacar(nivel, 1);
 			}
 		}
 	});
@@ -52,9 +61,9 @@ $(document).ready(function(e)
 </script>
 </head>
 <body>
-<audio controls loop style="display:none">
+<!--<audio controls loop style="display:none">
   <source src="audio/somJogo.mp3" type="audio/mp3">
-</audio>
+</audio>-->
 <div class="fundo_jogo"></div>
 <div class="concha">
   <p class="titulo">Nível Fácil</p>

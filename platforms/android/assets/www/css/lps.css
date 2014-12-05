@@ -42,23 +42,35 @@ body {
 }
 .menu{
 	width: 55%;
-	height: 35%;
+	height: 250px;
 	position: absolute;
-	margin-left: 23%;
-	margin-right: 25%;
-	margin-top: 45%;
-	margin-bottom: 25%;
+	top: 50%;
+	left: 50%;
+	margin-top: -125px;
+	margin-left: -27%;
 	z-index: 3;	
 	text-align: center;
 /*	background-color:#F3CCCC;*/
 }
-.menu li{
+.menu li, .placar li{
 	list-style: none;
 	padding: 5px 0px; 
 }
-.menu li p{
+.menu li p, .placar li p{
 	font-size: 16px;
 	font-weight: bold;
+}
+.placar{
+	width: 250px;
+	height: 250px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -125px;
+	margin-left: -125px;
+	z-index: 3;	
+	text-align: center;
+	background-color: #FDF9BC;
 }
 .ajuda{
 	margin-top: -55px;

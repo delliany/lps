@@ -9,10 +9,13 @@
 <link href="css/lps.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/lps.js"></script>
-<!--<script type="text/javascript" src="cordova.js"></script>-->
+<script type="text/javascript" src="cordova.js"></script>
 <script>
-$(document).ready(function(e) 
-{
+document.addEventListener("deviceready", function()
+{	
+/*	var myMedia = new Media("audio/somJogo.mp3");
+  	myMedia.play();*/
+  
 	$('.botao').click(function()
 	{
 	  	switch($(this).val())
@@ -33,13 +36,13 @@ $(document).ready(function(e)
 				window.location = 'sobre.html';
 		}
 	});
-});
+},false);
 </script>
 </head>
 <body>
-<audio controls loop style="display:none">
+<!--<audio controls loop style="display:none">
   <source src="audio/somJogo.mp3" type="audio/mp3">
-</audio>
+</audio>-->
 <div class="fundo_menu">
   <div class="menu">
       <p class="titulo">Last Pearl to Shine</p>

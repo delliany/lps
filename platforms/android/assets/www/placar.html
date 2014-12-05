@@ -7,27 +7,43 @@
 <title>Ajuda</title>
 <link href="css/reset.css" rel="stylesheet" type="text/css">
 <link href="css/lps.css" rel="stylesheet" type="text/css">
+<script>
+function obterPlacar()
+{
+	var placar = window.localStorage.getItem('placar');
+	
+	if(placar){
+	   placar = JSON.parse(placar);
+
+	   $('#vitN1').text(placar.vitN1);
+	   $('#derN1').text(placar.derN1);
+	   $('#vitN2').text(placar.vitN2);
+	   $('#derN2').text(placar.derN2);
+	   $('#vitN3').text(placar.vitN3);
+	   $('#derN3').text(placar.derN3);
+	}
+}
+</script>
 </head>
-<body>
+<body onLoad="obterPlacar();">
 <div class="fundo_menu">
-  <div class="menu">
+  <div class="placar">
       <p class="titulo">Placar</p>
     <ul>
       <li>
         <p>Nível Fácil</p>
-        <li>0 - Vitórias</li>
-        <li>0 - Derrotas</li>
-      </li>
+        <li><span id="vitN1">0</span> - Vitórias</li>
+        <li><span id="derN1">0</span> - Derrotas</li>
+      
       <li>
         <p>Nível Médio</p>
-        <li>0 - Vitórias</li>
-        <li>0 - Derrotas</li>
-      </li>
+        <li><span id="vitN2">0</span> - Vitórias</li>
+        <li><span id="derN2">0</span> - Derrotas</li>
+      
       <li>
         <p>Nível Difícil</p>
-        <li>0 - Vitórias</li>
-        <li>0 - Derrotas</li>
-      </li>
+        <li><span id="vitN3">0</span> - Vitórias</li>
+        <li><span id="derN3">0</span> - Derrotas</li>
     </ul>
   </div>
 </div>

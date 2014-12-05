@@ -5,8 +5,10 @@ var fila = 0;
 var qtde = 0;
 var listaPerolas = [];
 
-$(document).ready(function(e) 
+/*$(document).ready(function(e) 
 {
+	var myMedia = new Media("audio/somJogo.mp3");
+	
 	if(!window.localStorage.getItem('som')){
 		window.localStorage.setItem('som', true);
 	}
@@ -18,9 +20,10 @@ $(document).ready(function(e)
 	if(window.localStorage.getItem('som') == false){
 		$('audio').trigger('pause');
 	}else{
-		$('audio').trigger('play');
+
+  	myMedia.play();
 	}
-});
+});*/
 
 function initPerolas()
 {
@@ -402,4 +405,119 @@ function isUltimaPerola()
 	}
 	
 	return true;
+}
+/* nivel: 1 - fácil
+          2 - médio
+          3 - difícil
+   situacao: 1 - venceu
+    		 0 - perdeu
+*/
+          
+function atualizarPlacar(nivel, situacao)
+{
+	var placar = window.localStorage.getItem('placar');
+	
+	if(!placar){
+	   if(nivel == 1 && situacao == 1){
+		  placar.vitN1 = 1;
+		  placar.derN1 = 0;
+		  placar.vitN2 = 0;
+		  placar.derN2 = 0;
+		  placar.vitN3 = 0;
+		  placar.derN3 = 0;
+		  
+	   }else if(nivel == 1 && situacao == 0){
+		  placar.vitN1 = 0;
+		  placar.derN1 = 1;
+		  placar.vitN2 = 0;
+		  placar.derN2 = 0;
+		  placar.vitN3 = 0;
+		  placar.derN3 = 0;
+		  
+	   }else if(nivel == 2 && situacao == 1){
+		  placar.vitN1 = 0;
+		  placar.derN1 = 0;
+		  placar.vitN2 = 1;
+		  placar.derN2 = 0;
+		  placar.vitN3 = 0;
+		  placar.derN3 = 0;
+		  
+	   }else if(nivel == 2 && situacao == 0){
+		  placar.vitN1 = 0;
+		  placar.derN1 = 0;
+		  placar.vitN2 = 0;
+		  placar.derN2 = 1;
+		  placar.vitN3 = 0;
+		  placar.derN3 = 0;
+		  
+	   }else if(nivel == 3 && situacao == 1){
+		  placar.vitN1 = 0;
+		  placar.derN1 = 0;
+		  placar.vitN2 = 0;
+		  placar.derN2 = 0;
+		  placar.vitN3 = 1;
+		  placar.derN3 = 0;
+		  
+	   }else if(nivel == 3 && situacao == 0){
+		  placar.vitN1 = 0;
+		  placar.derN1 = 0;
+		  placar.vitN2 = 0;
+		  placar.derN2 = 0;
+		  placar.vitN3 = 0;
+		  placar.derN3 = 1;
+	   }
+	}else{
+		placar = JSON.parse(placar);
+		
+	   if(nivel == 1 && situacao == 1){
+		  placar.vitN1 = parseInt(placar.vitN1)+1;
+		  placar.derN1 = 0;
+		  placar.vitN2 = 0;
+		  placar.derN2 = 0;
+		  placar.vitN3 = 0;
+		  placar.derN3 = 0;
+		  
+	   }else if(nivel == 1 && situacao == 0){
+		  placar.vitN1 = 0;
+		  placar.derN1 = parseInt(placar.derN1)+1;
+		  placar.vitN2 = 0;
+		  placar.derN2 = 0;
+		  placar.vitN3 = 0;
+		  placar.derN3 = 0;
+		  
+	   }else if(nivel == 2 && situacao == 1){
+		  placar.vitN1 = 0;
+		  placar.derN1 = 0;
+		  placar.vitN2 = parseInt(placar.vitN2)+1;
+		  placar.derN2 = 0;
+		  placar.vitN3 = 0;
+		  placar.derN3 = 0;
+		  
+	   }else if(nivel == 2 && situacao == 0){
+		  placar.vitN1 = 0;
+		  placar.derN1 = 0;
+		  placar.vitN2 = 0;
+		  placar.derN2 = parseInt(placar.derN2)+1;
+		  placar.vitN3 = 0;
+		  placar.derN3 = 0;
+		  
+	   }else if(nivel == 3 && situacao == 1){
+		  placar.vitN1 = 0;
+		  placar.derN1 = 0;
+		  placar.vitN2 = 0;
+		  placar.derN2 = 0;
+		  placar.vitN3 = parseInt(placar.vitN3)+1;
+		  placar.derN3 = 0;
+		  
+	   }else if(nivel == 3 && situacao == 0){
+		  placar.vitN1 = 0;
+		  placar.derN1 = 0;
+		  placar.vitN2 = 0;
+		  placar.derN2 = 0;
+		  placar.vitN3 = 0;
+		  placar.derN3 = parseInt(placar.derN3)+1;
+	   }
+	}
+	
+	window.localStorage.setItem('placar',JSON.stringify(placar));
 }
