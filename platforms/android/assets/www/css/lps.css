@@ -122,7 +122,7 @@ body {
 	opacity: 0.8;
 }
 .concha{
-	background: url(../img/shell-mesh.png);
+	background: url(../img/shell-mesh2.png);
 	background-repeat: no-repeat;
 	background-size:  312px 290px;
 	width: 312px;
@@ -174,11 +174,11 @@ h1{
 	z-index: 5;	
 	top: 50%;
 	left: 50%;
-	width: 250px;
+	width: 300px;
 	height: 120px;
-	margin-left: -175px;
-	margin-top: 32px;
-		background-color:#F3CCCC;
+	margin-left: -170px;
+	margin-top: 25px;
+/* 		background-color:#F3CCCC; */
 }
 .box_perolas li{
     list-style: none;
@@ -191,4 +191,8 @@ h1{
 	background-size: 100% 100%;
 	width: 100%;
 	height: 100%;		
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
 }

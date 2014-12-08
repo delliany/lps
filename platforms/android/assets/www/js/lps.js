@@ -418,7 +418,9 @@ function atualizarPlacar(nivel, situacao)
 	var placar = window.localStorage.getItem('placar');
 	
 	if(!placar){
-	   if(nivel == 1 && situacao == 1){
+		placar = {};
+		
+		if(nivel == 1 && situacao == 1){
 		  placar.vitN1 = 1;
 		  placar.derN1 = 0;
 		  placar.vitN2 = 0;
@@ -467,6 +469,7 @@ function atualizarPlacar(nivel, situacao)
 		  placar.derN3 = 1;
 	   }
 	}else{
+		  alert('com placar');
 		placar = JSON.parse(placar);
 		
 	   if(nivel == 1 && situacao == 1){

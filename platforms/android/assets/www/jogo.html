@@ -40,6 +40,20 @@ $(document).ready(function(e)
 				
 				if(isUltimaPerola()){
 			   		atualizarPlacar(parseInt(nivel), 0);
+			   		
+			   		navigator.notification.confirm(
+			   				"Parabéns\n Deseja", // message
+			   				function(retorno)
+			   				{
+			   					if(retorno == '1' || retorno == 1 ){
+			   						habilitarCarregamento();
+			   						window.location = "sugestoes.html?param="+id+"-"+edicao;
+			   					}else{
+			   					   window.location = "eventos.html";
+			   					}
+			   				
+			   				},"Informativo:", ['Sim', 'N\u00e3o']
+			   		   );
 			    }
 			}
 		}
