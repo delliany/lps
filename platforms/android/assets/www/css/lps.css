@@ -52,25 +52,39 @@ body {
 	text-align: center;
 /*	background-color:#F3CCCC;*/
 }
-.menu li, .placar li{
+.menu li{
 	list-style: none;
 	padding: 5px 0px; 
+}
+.placar li{
+	list-style: none;
+}
+.placar li p{
+	font-size: 16px;
+	font-weight: bold;
+	padding: 10px 0px;
 }
 .menu li p, .placar li p{
 	font-size: 16px;
 	font-weight: bold;
 }
 .placar{
-	width: 250px;
-	height: 250px;
+	width: 175px;
+	height: 240px;
+	color: #FDF9BC;
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	margin-top: -125px;
-	margin-left: -125px;
+	margin-top: -120px;
+	margin-left: -87.5px;
 	z-index: 3;	
 	text-align: center;
-	background-color: #FDF9BC;
+	background-color: #F20018;
+	border: 5px ridge #FDF9BC ;
+	-webkit-border-radius: 20px;
+}
+.placar ul{
+	padding: 5px;	
 }
 .ajuda{
 	margin-top: -55px;
@@ -110,14 +124,15 @@ body {
 .concha{
 	background: url(../img/shell-mesh.png);
 	background-repeat: no-repeat;
-	width: 360px;
-    height: 360px;
+	background-size:  312px 290px;
+	width: 312px;
+    height: 290px;
 	position: fixed;
 	z-index: 2;
-	top: 50%;
+	top: 60%;
 	left: 50%;
-	margin-top: -110px;
-	margin-left: -180px;
+	margin-top: -135px;
+	margin-left: -156px;
 		
 }
 .botao_passar{
@@ -150,22 +165,30 @@ h1{
 .perola{
 	background-image: url(../img/perola.png);
 	background-repeat: no-repeat;
-	background-size: 37px 37px;
-	width: 37px;
-	height: 37px;	
+	background-size: 34px 34px;
+	width: 34px;
+	height: 34px;	
 }
 .box_perolas{
 	position: fixed;
 	z-index: 5;	
 	top: 50%;
 	left: 50%;
-	width: 300px;
+	width: 250px;
 	height: 120px;
-	margin-left: -170px;
-	margin-top: 25px;
+	margin-left: -175px;
+	margin-top: 32px;
+		background-color:#F3CCCC;
 }
 .box_perolas li{
     list-style: none;
    	display: inline-block;
 	margin-top: -10px;
+}
+.fundo_sobre{
+	background-image: url(../img/sobre.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	width: 100%;
+	height: 100%;		
 }

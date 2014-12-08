@@ -38,18 +38,18 @@ $(document).ready(function(e)
 				break;
 			case 'Nível Fácil':
 				 $(this).val('Nível Médio');
-				 window.localStorage.setItem('nivel',1);
+				 window.localStorage.setItem('nivel',2);
 				break;
 			case 'Nível Médio':
 				 $(this).val('Nível Difícil');
-				 window.localStorage.setItem('nivel',2);
+				 window.localStorage.setItem('nivel',3);
 				break;
 			case 'Nível Difícil':
 				 $(this).val('Nível Fácil');
-				 window.localStorage.setItem('nivel',3);
+				 window.localStorage.setItem('nivel',1);
 				break;
 			case 'Limpar Placar':
-				 alert('limpar');
+				window.localStorage.removeItem('placar');
 		}
 	});
 });
