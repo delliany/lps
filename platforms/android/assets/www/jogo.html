@@ -8,6 +8,7 @@
 <link href="css/lps.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/lps.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
 <script>
 var filaEscolhida = -1;
 var fileira;
@@ -40,20 +41,19 @@ $(document).ready(function(e)
 				
 				if(isUltimaPerola()){
 			   		atualizarPlacar(parseInt(nivel), 0);
-			   		
-			   		navigator.notification.confirm(
-			   				"Parabéns\n Deseja", // message
+			   		navigator.notification.confirm
+			   		(
+			   				"Deseja jogar novamente?", // message
 			   				function(retorno)
 			   				{
 			   					if(retorno == '1' || retorno == 1 ){
-			   						habilitarCarregamento();
-			   						window.location = "sugestoes.html?param="+id+"-"+edicao;
+			   						window.location.reload();
 			   					}else{
-			   					   window.location = "eventos.html";
+			   						navigator.app.backHistory();
 			   					}
 			   				
-			   				},"Informativo:", ['Sim', 'N\u00e3o']
-			   		   );
+			   				},"Tente outra vez", ['Sim', 'N\u00e3o']
+			   		);
 			    }
 			}
 		}
@@ -67,7 +67,20 @@ $(document).ready(function(e)
 			jogarOponente(parseInt(nivel));
 			
 			if(isUltimaPerola()){
-			   atualizarPlacar(parseInt(nivel), 1);
+			    atualizarPlacar(parseInt(nivel), 1);
+		   		navigator.notification.confirm
+		   		(
+		   				"Deseja jogar novamente?", // message
+		   				function(retorno)
+		   				{
+		   					if(retorno == '1' || retorno == 1 ){
+		   						window.location.reload();
+		   					}else{
+		   						navigator.app.backHistory();
+		   					}
+		   				
+		   				},"Parabéns!!!!", ['Sim', 'N\u00e3o']
+		   		);
 			}
 		}
 	});

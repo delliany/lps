@@ -469,7 +469,6 @@ function atualizarPlacar(nivel, situacao)
 		  placar.derN3 = 1;
 	   }
 	}else{
-		  alert('com placar');
 		placar = JSON.parse(placar);
 		
 	   if(nivel == 1 && situacao == 1){
@@ -521,6 +520,6 @@ function atualizarPlacar(nivel, situacao)
 		  placar.derN3 = parseInt(placar.derN3)+1;
 	   }
 	}
-	
+
 	window.localStorage.setItem('placar',JSON.stringify(placar));
 }
