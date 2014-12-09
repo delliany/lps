@@ -52,7 +52,7 @@ $(document).ready(function(e)
 			   						navigator.app.backHistory();
 			   					}
 			   				
-			   				},"Tente outra vez", ['Sim', 'N\u00e3o']
+			   				},"Perdeu :(", ['Sim', 'N\u00e3o']
 			   		);
 			    }
 			}
@@ -70,7 +70,7 @@ $(document).ready(function(e)
 			    atualizarPlacar(parseInt(nivel), 1);
 		   		navigator.notification.confirm
 		   		(
-		   				"Deseja jogar novamente?", // message
+		   				"Parabéns!!!\nDeseja jogar novamente?", // message
 		   				function(retorno)
 		   				{
 		   					if(retorno == '1' || retorno == 1 ){
@@ -79,7 +79,7 @@ $(document).ready(function(e)
 		   						navigator.app.backHistory();
 		   					}
 		   				
-		   				},"Parabéns!!!!", ['Sim', 'N\u00e3o']
+		   				},"Ganhou :)", ['Sim', 'N\u00e3o']
 		   		);
 			}
 		}
@@ -91,30 +91,30 @@ $(document).ready(function(e)
 <!--<audio controls loop style="display:none">
   <source src="audio/somJogo.mp3" type="audio/mp3">
 </audio>-->
+<p class="titulo">Nível Fácil</p>
 <div class="fundo_jogo"></div>
 <div class="concha">
-  <p class="titulo" style="top: 10%;">Nível Fácil</p>
+  <div class="box_perolas" align="center">
+    <ul>
+      <li class="perola" id="00"></li>
+      <li class="perola" id="01"></li>
+      <li class="perola" id="02"></li>
+    </ul>
+    <ul>
+      <li class="perola" id="10"></li>
+      <li class="perola" id="11"></li>
+      <li class="perola" id="12"></li>
+      <li class="perola" id="13"></li>
+    </ul>
+    <ul>
+      <li class="perola" id="20"></li>
+      <li class="perola" id="21"></li>
+      <li class="perola" id="22"></li>
+      <li class="perola" id="23"></li>
+      <li class="perola" id="24"></li>
+    </ul>
+  </div>
 </div>
-<div class="box_perolas" align="center">
-<ul>
-  <li class="perola" id="00"></li>
-  <li class="perola" id="01"></li>
-  <li class="perola" id="02"></li>
-</ul>
-<ul>
-  <li class="perola" id="10"></li>
-  <li class="perola" id="11"></li>
-  <li class="perola" id="12"></li>
-  <li class="perola" id="13"></li>
-</ul>
-<ul>
-  <li class="perola" id="20"></li>
-  <li class="perola" id="21"></li>
-  <li class="perola" id="22"></li>
-  <li class="perola" id="23"></li>
-  <li class="perola" id="24"></li>
-</ul>
-</div>
-  <input type="button" class="botao_passar" value="Passar">
+<input type="button" class="botao_passar" value="Passar">
 </body>
 </html>

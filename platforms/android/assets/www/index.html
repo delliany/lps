@@ -11,18 +11,31 @@
 <script type="text/javascript" src="js/lps.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
 <script>
+var myMedia;
+
 document.addEventListener("deviceready", function()
 {	
-/*	var myMedia = new Media("audio/somJogo.mp3");
-  	myMedia.play();*/
-  	
-  	playAudio("audio/somJogo.mp3");
-  	
-  	//playAudio("http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3");
+// 	myMedia = new Media("/android_asset/www/audio/somJogo.mp3");
+// 	myMedia.seekTo(0); 
+// 	myMedia.play();
 
 	$('.botao').click(function()
 	{
-	  	switch($(this).val())
+// 		myMedia.getCurrentPosition(
+
+// 	            function(position) {
+// 	                if (position > -1) {
+// 						document.getElementById('audio_position').innerHTML = (position/1000) + " sec";
+// 	                }
+// 	            },
+
+// 	            function(e) {
+// 	                console.log("Error getting pos=" + e);
+// 	            }
+// 	        );
+// 	    }, 1000);
+	
+		switch($(this).val())
 		{
 			case 'Jogar':
 				window.location = 'jogo.html';
@@ -41,41 +54,15 @@ document.addEventListener("deviceready", function()
 		}
 	});
 },false);
-function playAudio(url) 
-{
-    // Play the audio file at url
-    var my_media = new Media(url,
-        // success callback
-        function() {
-            console.log("playAudio():Audio Success");
-        },
-        // error callback
-        function(err) {
-            console.log("playAudio():Audio Error: "+err);
-    });
-
-    // Play audio
-    my_media.play();
-
-    // Mute volume after 2 seconds
-    setTimeout(function() {
-        my_media.setVolume('0.0');
-    }, 2000);
-
-    // Set volume to 1.0 after 5 seconds
-    setTimeout(function() {
-        my_media.setVolume('1.0');
-    }, 5000);
-}
 </script>
 </head>
 <body>
 <!--<audio controls loop style="display:none">
   <source src="audio/somJogo.mp3" type="audio/mp3">
 </audio>-->
-<div class="fundo_menu">
+<p class="titulo">Last Pearl to Shine</p>
+<div class="fundo_menu"></div>
   <div class="menu">
-      <p class="titulo">Last Pearl to Shine</p>
     <ul>
       <li>
         <input type="button" class="botao" value="Jogar">
@@ -94,6 +81,5 @@ function playAudio(url)
       </li>
     </ul>
   </div>
-</div>
 </body>
 </html>

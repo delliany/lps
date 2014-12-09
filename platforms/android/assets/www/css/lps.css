@@ -23,22 +23,23 @@ body {
 /*    text-shadow: 0 0 10px #970007, 0 -5px 10px #970007, 
 	0 0 10px #970007, -10px 0 30px #970007, 
 	10px 0 30px #970007; */
-	top: 15%;
+	top: 35px;
 	left: 0;
 	width: 100%;
-	position: fixed;
-
+	z-index: 3;
+	position: relative;
 }
 .fundo_menu{
-	background: url(../img/canstockphoto6936926_comp.jpg);
+	background:url(../img/bubbles_wallpaper.png);
 	background-repeat: no-repeat;
 	width: 100%;
 	height: 100%;	
 	background-size: 100% 100%;
 	position: fixed;
+	opacity:0.5;
 	top: 0;
 	left: 0;
-	z-index: 2;
+	z-index: 1;
 }
 .menu{
 	width: 55%;
@@ -56,46 +57,33 @@ body {
 	list-style: none;
 	padding: 5px 0px; 
 }
-.placar li{
-	list-style: none;
-}
-.placar li p{
+.menu li p{
 	font-size: 16px;
 	font-weight: bold;
-	padding: 10px 0px;
-}
-.menu li p, .placar li p{
-	font-size: 16px;
-	font-weight: bold;
-}
-.placar{
-	width: 175px;
-	height: 240px;
-	color: #FDF9BC;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin-top: -120px;
-	margin-left: -87.5px;
-	z-index: 3;	
-	text-align: center;
-	background-color: #F20018;
-	border: 5px ridge #FDF9BC ;
-	-webkit-border-radius: 20px;
-}
-.placar ul{
-	padding: 5px;	
 }
 .ajuda{
-	margin-top: -55px;
-	padding: 0 10px;
+	margin-top: 90px;
+	padding: 0 15%;
 	text-align: justify;
 	overflow-y: auto;
 	overflow-x: hidden;
-	height: 133%;
+	height: 80%;
 	display: block;	
 	font-size: 14px;
 	font-weight: bold;
+	z-index: 3;
+	position: relative;
+}
+.placar{
+	margin-top: 90px;
+	margin-left: 35%;
+	margin-right: 35%;
+	text-align: justify;
+	display: block;	
+	font-size: 14px;
+	font-weight: bold;
+	z-index: 3;
+	position: relative;
 }
 .botao{
 	color: #FDF9BC;
@@ -119,7 +107,9 @@ body {
 	height: 100%;
 	position: fixed;
 	z-index: 1;
-	opacity: 0.8;
+	opacity: 0.7;
+	top: 0;
+	left: 0;
 }
 .concha{
 	background: url(../img/shell-mesh2.png);
@@ -157,10 +147,10 @@ body {
 h1{
 	font-family:'Snap ITC', sans-serif;
 	color: #F20018;	
-	top: 0;
-	position: fixed;
-	text-align: center;
-	width: 100%;
+	font-size: 16px;
+	margin: 10px 0;
+	z-index: 3;
+	position: relative;
 }
 .perola{
 	background-image: url(../img/perola.png);
@@ -177,7 +167,7 @@ h1{
 	width: 300px;
 	height: 120px;
 	margin-left: -170px;
-	margin-top: 25px;
+	margin-top: 48px;
 /* 		background-color:#F3CCCC; */
 }
 .box_perolas li{

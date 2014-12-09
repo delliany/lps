@@ -5,25 +5,12 @@ var fila = 0;
 var qtde = 0;
 var listaPerolas = [];
 
-/*$(document).ready(function(e) 
+document.addEventListener("deviceready", function()
 {
-	var myMedia = new Media("audio/somJogo.mp3");
+	myMedia = new Media("/android_asset/www/audio/somJogo.mp3");
+	myMedia.play();
 	
-	if(!window.localStorage.getItem('som')){
-		window.localStorage.setItem('som', true);
-	}
-	
-	if(!window.localStorage.getItem('nivel')){
-		window.localStorage.setItem('nivel', 1);
-	}
-	
-	if(window.localStorage.getItem('som') == false){
-		$('audio').trigger('pause');
-	}else{
-
-  	myMedia.play();
-	}
-});*/
+},false);
 
 function initPerolas()
 {
