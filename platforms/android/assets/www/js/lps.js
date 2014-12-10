@@ -5,12 +5,13 @@ var fila = 0;
 var qtde = 0;
 var listaPerolas = [];
 
-document.addEventListener("deviceready", function()
-{
-	myMedia = new Media("/android_asset/www/audio/somJogo.mp3");
-	myMedia.play();
-	
-},false);
+//document.addEventListener("deviceready", function()
+//{
+//	if(window.localStorage.getItem('som') != false){
+//		myMedia = new Media("/android_asset/www/audio/somJogo.mp3");
+//		myMedia.play();
+//	}
+//},false);
 
 function initPerolas()
 {

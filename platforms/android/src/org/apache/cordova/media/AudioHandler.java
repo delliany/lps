@@ -29,8 +29,10 @@ import android.net.Uri;
 import java.util.ArrayList;
 
 import org.apache.cordova.PluginResult;
+import org.apache.cordova.media.AudioPlayer.STATE;
 import org.json.JSONArray;
 import org.json.JSONException;
+
 import java.util.HashMap;
 
 /**
@@ -254,9 +256,20 @@ public class AudioHandler extends CordovaPlugin {
      * @param id				The id of the audio player
      * @param file				The name of the audio file.
      */
-    public void startPlayingAudio(String id, String file) {
-        AudioPlayer audio = getOrCreatePlayer(id, file);
-        audio.startPlaying(file);
+    public void startPlayingAudio(final String id, final String file) {
+        
+    	Runnable runnable = new Runnable() {
+			
+			@Override
+			public void run() {
+		    	AudioPlayer audio = getOrCreatePlayer(id, file);
+		        audio.startPlaying(file);
+			}
+		};
+		
+		this.cordova.getActivity().runOnUiThread(runnable);
+    	
+
     }
 
     /**

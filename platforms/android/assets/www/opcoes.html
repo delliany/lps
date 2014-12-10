@@ -30,12 +30,10 @@ $(document).ready(function(e)
 			case 'Som Desligado':
 				 $(this).val('Som Ligado');
 				 window.localStorage.setItem('som',true);
-				 $('audio').trigger('play');
 				break;
 			case 'Som Ligado':
 				 $(this).val('Som Desligado');
 				 window.localStorage.setItem('som',false);
-				 $('audio').trigger('pause');
 				break;
 			case 'Nível Fácil':
 				 $(this).val('Nível Médio');

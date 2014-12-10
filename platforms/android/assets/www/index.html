@@ -15,26 +15,13 @@ var myMedia;
 
 document.addEventListener("deviceready", function()
 {	
-// 	myMedia = new Media("/android_asset/www/audio/somJogo.mp3");
-// 	myMedia.seekTo(0); 
-// 	myMedia.play();
+	//if(window.localStorage.getItem('som') != false){
+		myMedia = new Media("/android_asset/www/audio/somJogo.mp3");
+		myMedia.play();
+	//}
 
 	$('.botao').click(function()
 	{
-// 		myMedia.getCurrentPosition(
-
-// 	            function(position) {
-// 	                if (position > -1) {
-// 						document.getElementById('audio_position').innerHTML = (position/1000) + " sec";
-// 	                }
-// 	            },
-
-// 	            function(e) {
-// 	                console.log("Error getting pos=" + e);
-// 	            }
-// 	        );
-// 	    }, 1000);
-	
 		switch($(this).val())
 		{
 			case 'Jogar':
@@ -57,9 +44,9 @@ document.addEventListener("deviceready", function()
 </script>
 </head>
 <body>
-<!--<audio controls loop style="display:none">
-  <source src="audio/somJogo.mp3" type="audio/mp3">
-</audio>-->
+<!-- <audio controls loop style="display:none"> -->
+<!--   <source src="audio/somJogo.mp3" type="audio/mp3"> -->
+<!-- </audio> -->
 <p class="titulo">Last Pearl to Shine</p>
 <div class="fundo_menu"></div>
   <div class="menu">
