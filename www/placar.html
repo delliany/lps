@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, user-scalable=no" />
+<title>Ajuda</title>
+<link href="css/reset.css" rel="stylesheet" type="text/css">
+<link href="css/lps.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script>
+function obterPlacar()
+{
+	var placar = window.localStorage.getItem('placar');
+	
+	if(placar){
+	   placar = JSON.parse(placar);
+
+	   $('#vitN1').text(placar.vitN1);
+	   $('#derN1').text(placar.derN1);
+	   $('#vitN2').text(placar.vitN2);
+	   $('#derN2').text(placar.derN2);
+	   $('#vitN3').text(placar.vitN3);
+	   $('#derN3').text(placar.derN3);
+	}
+}
+</script>
+</head>
+<body onLoad="obterPlacar();">
+<p class="titulo">Placar</p>
+<div class="fundo_menu"></div>
+<div class="placar">
+  <h1>Nível Fácil</h1>
+  <span id="vitN1">0</span> - Vitórias<br>
+  <span id="derN1">0</span> - Derrotas
+  <h1>Nível Médio</h1>
+  <span id="vitN2">0</span> - Vitórias<br>
+  <span id="derN2">0</span> - Derrotas
+  <h1>Nível Difícil</h1>
+  <span id="vitN3">0</span> - Vitórias<br>
+  <span id="derN3">0</span> - Derrotas
+</div>
+</body>
+</html>

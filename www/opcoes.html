@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, user-scalable=no" />
+<title>Opções</title>
+<link href="css/reset.css" rel="stylesheet" type="text/css">
+<link href="css/lps.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/lps.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script>
+$(document).ready(function(e) 
+{
+	if(window.localStorage.getItem('som') == false){
+		$('#som').val('Som Desligado');	
+	}
+	
+	if(window.localStorage.getItem('nivel') == 2){
+		$('#nivel').val('Nível Médio');	
+	}else if(window.localStorage.getItem('nivel') == 3){
+		$('#nivel').val('Nível Difícil');	
+	}
+	
+	$('.botao').click(function()
+	{
+	  	switch($(this).val())
+		{
+			case 'Som Desligado':
+				 $(this).val('Som Ligado');
+				 window.localStorage.setItem('som',true);
+				break;
+			case 'Som Ligado':
+				 $(this).val('Som Desligado');
+				 window.localStorage.setItem('som',false);
+				break;
+			case 'Nível Fácil':
+				 $(this).val('Nível Médio');
+				 window.localStorage.setItem('nivel',2);
+				break;
+			case 'Nível Médio':
+				 $(this).val('Nível Difícil');
+				 window.localStorage.setItem('nivel',3);
+				break;
+			case 'Nível Difícil':
+				 $(this).val('Nível Fácil');
+				 window.localStorage.setItem('nivel',1);
+				break;
+			case 'Limpar Placar':
+				window.localStorage.removeItem('placar');
+		}
+	});
+});
+
+</script>
+</head>
+<body>
+<!--<audio controls loop style="display:none">
+  <source src="audio/somJogo.mp3" type="audio/mp3">
+</audio>-->      
+<p class="titulo">Opções</p>
+<div class="fundo_menu"></div>
+  <div class="menu">
+    <ul>
+      <li>
+        <input type="button" id="som" class="botao" value="Som Ligado">
+      </li>
+      <li>
+        <input type="button" id="nivel" class="botao" value="Nível Fácil">
+      </li>
+      <li>
+        <input type="button" class="botao" value="Limpar Placar">
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

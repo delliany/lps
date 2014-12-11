@@ -1,0 +1,188 @@
+@CHARSET "ISO-8859-1";
+/* CSS Document */
+* {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+body {
+	font-family: Helvetica, sans-serif;
+	margin: 0;
+	font-size: 13px;
+	line-height: 1.231;
+	color: #000;
+	overflow-x: hidden;
+}
+.titulo{
+	font-family:'Snap ITC', sans-serif;
+	font-size: 28px;
+	text-align: center;		
+	color: #F20018;
+	text-shadow: 2px -2px #000; 
+/*    text-shadow: 0 0 10px #970007, 0 -5px 10px #970007, 
+	0 0 10px #970007, -10px 0 30px #970007, 
+	10px 0 30px #970007; */
+	top: 35px;
+	left: 0;
+	width: 100%;
+	z-index: 3;
+	position: relative;
+}
+.fundo_menu{
+	background:url(../img/bubbles_wallpaper.png);
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100%;	
+	background-size: 100% 100%;
+	position: fixed;
+	opacity:0.5;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+.menu{
+	width: 55%;
+	height: 250px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -125px;
+	margin-left: -27%;
+	z-index: 3;	
+	text-align: center;
+/*	background-color:#F3CCCC;*/
+}
+.menu li{
+	list-style: none;
+	padding: 5px 0px; 
+}
+.menu li p{
+	font-size: 16px;
+	font-weight: bold;
+}
+.ajuda{
+	margin-top: 90px;
+	padding: 0 15%;
+	text-align: justify;
+	overflow-y: auto;
+	overflow-x: hidden;
+	height: 80%;
+	display: block;	
+	font-size: 14px;
+	font-weight: bold;
+	z-index: 3;
+	position: relative;
+}
+.placar{
+	margin-top: 90px;
+	margin-left: 35%;
+	margin-right: 35%;
+	text-align: justify;
+	display: block;	
+	font-size: 14px;
+	font-weight: bold;
+	z-index: 3;
+	position: relative;
+}
+.botao{
+	color: #FDF9BC;
+	width: 80%;
+	height: 40px;
+	font-family:'Snap ITC', sans-serif;
+	font-size: 18px;
+	text-align: center;
+	-webkit-border-radius: 10px;
+	-webkit-box-shadow: inset 0 1px 1px -1px white, 0 1px 5px rgba(0, 0, 0, .5);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F20018), to(#970007));
+	-webkit-transition: left 200ms ease-in;
+	border-color: #D40016;
+	-webkit-transform: translate3d(0, 0, 0);
+}
+.fundo_jogo{
+	background: url(../img/marine.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 1;
+	opacity: 0.7;
+	top: 0;
+	left: 0;
+}
+.concha{
+	background: url(../img/shell-mesh2.png);
+	background-repeat: no-repeat;
+	background-size:  312px 290px;
+	width: 312px;
+    height: 290px;
+	position: fixed;
+	z-index: 2;
+	top: 60%;
+	left: 50%;
+	margin-top: -135px;
+	margin-left: -156px;
+		
+}
+.botao_passar{
+	color: #FDF9BC;
+	width: 20%;
+	height: 30px;
+	position: fixed;
+	z-index: 2;
+	top: 100%;
+	left: 10px;
+	margin-top: -35px;	
+	font-family:'Snap ITC', sans-serif;
+	font-size: 18px;
+	text-align: center;
+	-webkit-border-radius: 10px;
+	-webkit-box-shadow: inset 0 1px 1px -1px white, 0 1px 5px rgba(0, 0, 0, .5);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F20018), to(#970007));
+	-webkit-transition: left 200ms ease-in;
+	border-color: #D40016;
+	-webkit-transform: translate3d(0, 0, 0);
+}
+h1{
+	font-family:'Snap ITC', sans-serif;
+	color: #F20018;	
+	font-size: 16px;
+	margin: 10px 0;
+	z-index: 3;
+	position: relative;
+}
+.perola{
+	background-image: url(../img/perola.png);
+	background-repeat: no-repeat;
+	background-size: 34px 34px;
+	width: 34px;
+	height: 34px;	
+}
+.box_perolas{
+	position: fixed;
+	z-index: 5;	
+	top: 50%;
+	left: 50%;
+	width: 300px;
+	height: 120px;
+	margin-left: -170px;
+	margin-top: 48px;
+/* 		background-color:#F3CCCC; */
+}
+.box_perolas li{
+    list-style: none;
+   	display: inline-block;
+	margin-top: -10px;
+}
+.fundo_sobre{
+	background-image: url(../img/sobre.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	width: 100%;
+	height: 100%;		
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
