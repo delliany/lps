@@ -11,8 +11,14 @@
 <script type="text/javascript" src="js/lps.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
 <script>
-$(document).ready(function(e) 
+document.addEventListener("deviceready", function()
 {
+	document.addEventListener("backbutton", function()
+	{ 
+		obterPosiMedia();
+		navigator.app.backHistory();
+	}, false);
+
 	if(window.localStorage.getItem('som') == false){
 		$('#som').val('Som Desligado');	
 	}
@@ -29,10 +35,12 @@ $(document).ready(function(e)
 		{
 			case 'Som Desligado':
 				 $(this).val('Som Ligado');
+				 tocarMedia();
 				 window.localStorage.setItem('som',true);
 				break;
 			case 'Som Ligado':
 				 $(this).val('Som Desligado');
+		         myMedia.stop();
 				 window.localStorage.setItem('som',false);
 				break;
 			case 'Nível Fácil':
@@ -51,28 +59,32 @@ $(document).ready(function(e)
 				window.localStorage.removeItem('placar');
 		}
 	});
-});
-
+},false);
 </script>
 </head>
 <body>
-<!--<audio controls loop style="display:none">
-  <source src="audio/somJogo.mp3" type="audio/mp3">
-</audio>-->      
 <p class="titulo">Opções</p>
 <div class="fundo_menu"></div>
-  <div class="menu">
-    <ul>
-      <li>
-        <input type="button" id="som" class="botao" value="Som Ligado">
-      </li>
-      <li>
-        <input type="button" id="nivel" class="botao" value="Nível Fácil">
-      </li>
-      <li>
-        <input type="button" class="botao" value="Limpar Placar">
-      </li>
-    </ul>
-  </div>
+<div class="menu">
+  <ul>
+    <li>
+      <input type="button" id="som" class="botao" value="Som Ligado">
+    </li>
+    <li>
+      <input type="button" id="nivel" class="botao" value="Nível Fácil">
+    </li>
+    <li>
+      <input type="button" class="botao" value="Limpar Placar">
+    </li>
+  </ul>
+</div>
+<script>
+	if(window.innerHeight < 380){
+	   document.getElementsByClassName('titulo').item(0).style.top = '3px';
+	   document.getElementsByClassName('fundo_menu').item(0).style.position = 'absolute'; 
+	   document.getElementsByClassName('menu').item(0).style.marginTop = '-100px';
+
+	}
+</script>
 </body>
 </html>

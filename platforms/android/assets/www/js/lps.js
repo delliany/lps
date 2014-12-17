@@ -4,14 +4,38 @@ var perolasFila3;
 var fila = 0;
 var qtde = 0;
 var listaPerolas = [];
+var myMedia;
+var positionMedia;
 
 document.addEventListener("deviceready", function()
 {
-	if(window.localStorage.getItem('som') != false){
-		myMedia = new Media("/android_asset/www/audio/somJogo.mp3");
-		myMedia.play();
+	if(window.localStorage.getItem('som') != 'false'){
+		tocarMedia();
 	}
+
 },false);
+
+function tocarMedia()
+{
+	myMedia = new Media("/android_asset/www/audio/somJogo.mid");
+
+	positionMedia = window.localStorage.getItem("position") || 0;
+	myMedia.seekTo(positionMedia*1000);
+	myMedia.play();
+}
+
+function obterPosiMedia()
+{
+	if(window.localStorage.getItem('som') != 'false'){
+		myMedia.getCurrentPosition(function(position)
+		{
+			window.localStorage.setItem("position",position);
+		},function()
+		{
+			window.localStorage.setItem("position",0);
+		});
+	}
+}
 
 function initPerolas()
 {
@@ -95,7 +119,9 @@ function retirarPerola(linha, coluna)
 	var id = linha.toString().concat('',coluna.toString());
 
 	listaPerolas[linha][coluna] = 0;
-	$('#'+id).fadeOut(150);
+	//$('#'+id).fadeOut(150);
+	$('#'+id).removeClass('perola');
+	$('#'+id).addClass('perola2');
 }
 
 function jogadaMaquina()
@@ -406,6 +432,7 @@ function atualizarPlacar(nivel, situacao)
 	var placar = window.localStorage.getItem('placar');
 	
 	if(!placar){
+
 		placar = {};
 		
 		if(nivel == 1 && situacao == 1){
@@ -459,55 +486,29 @@ function atualizarPlacar(nivel, situacao)
 	}else{
 		placar = JSON.parse(placar);
 		
+		console.log(JSON.stringify(placar));
+		
 	   if(nivel == 1 && situacao == 1){
 		  placar.vitN1 = parseInt(placar.vitN1)+1;
-		  placar.derN1 = 0;
-		  placar.vitN2 = 0;
-		  placar.derN2 = 0;
-		  placar.vitN3 = 0;
-		  placar.derN3 = 0;
 		  
 	   }else if(nivel == 1 && situacao == 0){
-		  placar.vitN1 = 0;
 		  placar.derN1 = parseInt(placar.derN1)+1;
-		  placar.vitN2 = 0;
-		  placar.derN2 = 0;
-		  placar.vitN3 = 0;
-		  placar.derN3 = 0;
 		  
 	   }else if(nivel == 2 && situacao == 1){
-		  placar.vitN1 = 0;
-		  placar.derN1 = 0;
 		  placar.vitN2 = parseInt(placar.vitN2)+1;
-		  placar.derN2 = 0;
-		  placar.vitN3 = 0;
-		  placar.derN3 = 0;
 		  
 	   }else if(nivel == 2 && situacao == 0){
-		  placar.vitN1 = 0;
-		  placar.derN1 = 0;
-		  placar.vitN2 = 0;
 		  placar.derN2 = parseInt(placar.derN2)+1;
-		  placar.vitN3 = 0;
-		  placar.derN3 = 0;
 		  
 	   }else if(nivel == 3 && situacao == 1){
-		  placar.vitN1 = 0;
-		  placar.derN1 = 0;
-		  placar.vitN2 = 0;
-		  placar.derN2 = 0;
 		  placar.vitN3 = parseInt(placar.vitN3)+1;
-		  placar.derN3 = 0;
 		  
 	   }else if(nivel == 3 && situacao == 0){
-		  placar.vitN1 = 0;
-		  placar.derN1 = 0;
-		  placar.vitN2 = 0;
-		  placar.derN2 = 0;
-		  placar.vitN3 = 0;
 		  placar.derN3 = parseInt(placar.derN3)+1;
 	   }
 	}
-
+	
+	console.log(JSON.stringify(placar));
+	
 	window.localStorage.setItem('placar',JSON.stringify(placar));
 }

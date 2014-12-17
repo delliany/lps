@@ -19,6 +19,7 @@
 package org.apache.cordova.media;
 
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaResourceApi;
 
@@ -258,18 +259,18 @@ public class AudioHandler extends CordovaPlugin {
      */
     public void startPlayingAudio(final String id, final String file) {
         
+    	final CordovaInterface cordova = this.cordova;
+    	
     	Runnable runnable = new Runnable() {
 			
 			@Override
 			public void run() {
-		    	AudioPlayer audio = getOrCreatePlayer(id, file);
+				AudioPlayer audio = getOrCreatePlayer(id, file);
 		        audio.startPlaying(file);
 			}
 		};
 		
 		this.cordova.getActivity().runOnUiThread(runnable);
-    	
-
     }
 
     /**

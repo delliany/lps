@@ -20,15 +20,13 @@ body {
 	color: #000;
 	overflow-x: hidden;
 }
+
 .titulo{
 	font-family:'Snap ITC', sans-serif;
 	font-size: 24px;
 	text-align: center;		
 	color: #F20018;
 	text-shadow: 2px -2px #000; 
-/*    text-shadow: 0 0 10px #970007, 0 -5px 10px #970007, 
-	0 0 10px #970007, -10px 0 30px #970007, 
-	10px 0 30px #970007; */
 	top: 35px;
 	left: 0;
 	width: 100%;
@@ -82,14 +80,16 @@ body {
 }
 .placar{
 	margin-top: 90px;
-	margin-left: 35%;
-	margin-right: 35%;
+	left: 50%;
 	text-align: justify;
-	display: block;	
+	display: block;
 	font-size: 14px;
 	font-weight: bold;
 	z-index: 3;
 	position: relative;
+	width: 125px;
+	background-color: #FFF;
+	margin-left: -62.5px;
 }
 .botao{
 	color: #FDF9BC;
@@ -120,9 +120,9 @@ body {
 .concha{
 	background: url(../img/shell-mesh2.png);
 	background-repeat: no-repeat;
-	background-size:  312px 290px;
+	background-size:  312px 310px;
 	width: 312px;
-    height: 290px;
+    height: 310px;
 	position: fixed;
 	z-index: 2;
 	top: 60%;
@@ -165,15 +165,24 @@ h1{
 	width: 34px;
 	height: 34px;	
 }
+.perola2{
+	width: 34px;
+	height: 34px;	
+	background-color: #FDF9BC;
+	-webkit-border-radius: 20px;
+	-webkit-transition: width 2s, height 2s, transform 2s;
+	-webkit-transform: scale(0);
+	
+}
 .box_perolas{
 	position: fixed;
 	z-index: 5;	
-	top: 50%;
+	top: 60%;
 	left: 50%;
 	width: 300px;
 	height: 120px;
 	margin-left: -170px;
-	margin-top: 45px;
+	margin-top: -10px;
 /* 		background-color:#F3CCCC; */
 }
 .box_perolas li{

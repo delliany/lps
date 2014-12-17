@@ -15,7 +15,7 @@ var fileira;
 var coluna;
 var nivel;
 
-$(document).ready(function(e) 
+document.addEventListener("deviceready", function()
 {
 	nivel = window.localStorage.getItem('nivel') || 1;
 
@@ -84,13 +84,96 @@ $(document).ready(function(e)
 			}
 		}
 	});
-});
+	document.addEventListener("backbutton", function()
+	{ 
+		obterPosiMedia();
+		navigator.app.backHistory();
+	}, false);
+},false);
+
+// $(document).ready(function(e) 
+// {
+// 	nivel = window.localStorage.getItem('nivel') || 1;
+
+// 	if(nivel == '2'){
+// 		$('.titulo').text('Nível Médio');
+// 	}else if(nivel == '3'){
+// 		$('.titulo').text('Nível Difícil');
+// 	}
+	
+// 	initPerolas();
+	
+// 	$('.perola').click(function(event)
+// 	{
+// 		event.preventDefault();
+// 		fileira = this.id.slice(0,1);
+// 		coluna = this.id.slice(1);
+		
+// 		if ((filaEscolhida == fileira) || (filaEscolhida == -1)) {
+// 			if (listaPerolas[fileira][coluna] == 1) {
+				
+// 				retirarPerola(fileira, coluna);
+// 				filaEscolhida = fileira;
+				
+// 				if(isUltimaPerola()){
+// 			   		atualizarPlacar(parseInt(nivel), 0);
+// 			   		navigator.notification.confirm
+// 			   		(
+// 			   				"Deseja jogar novamente?", // message
+// 			   				function(retorno)
+// 			   				{
+// 			   					if(retorno == '1' || retorno == 1 ){
+// 			   						window.location.reload();
+// 			   					}else{
+// 			   						navigator.app.backHistory();
+// 			   					}
+			   				
+// 			   				},"Perdeu :(", ['Sim', 'N\u00e3o']
+// 			   		);
+// 			    }
+// 			}
+// 		}
+// 	});
+	
+// 	$('.botao_passar').click(function ()
+// 	{
+// 		if(parseInt(filaEscolhida) != -1){
+
+// 			filaEscolhida = -1;
+// 			jogarOponente(parseInt(nivel));
+			
+// 			if(isUltimaPerola()){
+// 			    atualizarPlacar(parseInt(nivel), 1);
+// 		   		navigator.notification.confirm
+// 		   		(
+// 		   				"Parabéns!!!\nDeseja jogar novamente?", // message
+// 		   				function(retorno)
+// 		   				{
+// 		   					if(retorno == '1' || retorno == 1 ){
+// 		   						window.location.reload();
+// 		   					}else{
+// 		   						navigator.app.backHistory();
+// 		   					}
+		   				
+// 		   				},"Ganhou :)", ['Sim', 'N\u00e3o']
+// 		   		);
+// 			}
+// 		}
+// 	});
+// });
+function ajustarResolucao()
+{
+	if(window.innerHeight < 380){
+		alert('aqui');
+	   document.getElementsByClassName('titulo').style.marginBottom = '50px';
+	   document.getElementsByClassName('concha').style.position = 'absolute';
+	   //document.getElementsByClassName('concha').style.backgroundSize = '250px 250px;';
+	   document.getElementsByClassName('fundo_jogo').style.position = 'absolute'; 
+	}
+}
 </script>
 </head>
 <body>
-<!--<audio controls loop style="display:none">
-  <source src="audio/somJogo.mp3" type="audio/mp3">
-</audio>-->
 <p class="titulo">Nível Fácil</p>
 <div class="fundo_jogo"></div>
 <div class="concha">
@@ -116,5 +199,19 @@ $(document).ready(function(e)
   </div>
 </div>
 <input type="button" class="botao_passar" value="Passar">
+<script>
+	if(window.innerHeight < 380){
+	   document.getElementsByClassName('titulo').item(0).style.top = '2px';
+	   document.getElementsByClassName('fundo_jogo').item(0).style.position = 'absolute'; 
+	   //document.getElementsByClassName('fundo_jogo').item(0).style.height = document.height+'px';
+	   document.getElementsByClassName('concha').item(0).style.position = 'absolute';
+	   document.getElementsByClassName('concha').item(0).style.backgroundSize = '280px 270px';
+	   document.getElementsByClassName('concha').item(0).style.marginTop = '-115px';
+	   document.getElementsByClassName('concha').item(0).style.marginLeft = '-125px';
+	   document.getElementsByClassName('box_perolas').item(0).style.position = 'absolute';
+	   document.getElementsByClassName('box_perolas').item(0).style.marginLeft = '-190px';
+	   document.getElementsByClassName('box_perolas').item(0).style.marginTop = '-95px';
+	}
+</script>
 </body>
 </html>

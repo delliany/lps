@@ -8,6 +8,17 @@
 <link href="css/reset.css" rel="stylesheet" type="text/css">
 <link href="css/lps.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/lps.js"></script>
+<script>
+document.addEventListener("deviceready", function()
+{
+	document.addEventListener("backbutton", function()
+	{ 
+		obterPosiMedia();
+		navigator.app.backHistory();
+	}, false);
+},false);
+</script>
 </head>
 <body>
 <div class="fundo_sobre"></div>

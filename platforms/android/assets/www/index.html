@@ -11,17 +11,12 @@
 <script type="text/javascript" src="js/lps.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
 <script>
-var myMedia;
-
 document.addEventListener("deviceready", function()
 {	
-	//if(window.localStorage.getItem('som') != false){
-		myMedia = new Media("/android_asset/www/audio/somJogo.mp3");
-		myMedia.play();
-	//}
-
 	$('.botao').click(function()
 	{
+		obterPosiMedia();
+		
 		switch($(this).val())
 		{
 			case 'Jogar':
@@ -40,33 +35,44 @@ document.addEventListener("deviceready", function()
 				window.location = 'sobre.html';
 		}
 	});
+	
+	document.addEventListener("backbutton", function()
+	{ 
+		navigator.app.exitApp();
+    }, false);
+	
 },false);
 </script>
 </head>
 <body>
-<!-- <audio controls loop style="display:none"> -->
-<!--   <source src="audio/somJogo.mp3" type="audio/mp3"> -->
-<!-- </audio> -->
 <p class="titulo">Last Pearl to Shine</p>
 <div class="fundo_menu"></div>
-  <div class="menu">
-    <ul>
-      <li>
-        <input type="button" class="botao" value="Jogar">
-      </li>
-      <li>
-        <input type="button" class="botao" value="Opções">
-      </li>
-      <li>
-        <input type="button" class="botao" value="Ajuda">
-      </li>
-      <li>
-        <input type="button" class="botao" value="Placar">
-      </li>
-      <li>
-        <input type="button" class="botao" value="Sobre">
-      </li>
-    </ul>
-  </div>
+<div class="menu">
+  <ul>
+    <li>
+      <input type="button" class="botao" value="Jogar">
+    </li>
+    <li>
+      <input type="button" class="botao" value="Opções">
+    </li>
+    <li>
+      <input type="button" class="botao" value="Ajuda">
+    </li>
+    <li>
+      <input type="button" class="botao" value="Placar">
+    </li>
+    <li>
+      <input type="button" class="botao" value="Sobre">
+    </li>
+  </ul>
+</div>
+<script>
+	if(window.innerHeight < 380){
+	   document.getElementsByClassName('titulo').item(0).style.top = '3px';
+	   document.getElementsByClassName('fundo_menu').item(0).style.position = 'absolute'; 
+	   document.getElementsByClassName('menu').item(0).style.marginTop = '-100px';
+
+	}
+</script>
 </body>
 </html>

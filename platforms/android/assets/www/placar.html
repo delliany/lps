@@ -9,7 +9,17 @@
 <link href="css/lps.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/lps.js"></script>
 <script>
+document.addEventListener("deviceready", function()
+{
+	document.addEventListener("backbutton", function()
+	{ 
+		obterPosiMedia();
+		navigator.app.backHistory();
+	}, false);
+},false);
+
 function obterPlacar()
 {
 	var placar = window.localStorage.getItem('placar');
@@ -40,6 +50,8 @@ function obterPlacar()
   <h1>Nível Difícil</h1>
   <span id="vitN3">0</span> - Vitórias<br>
   <span id="derN3">0</span> - Derrotas
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
 </div>
 </body>
 </html>
