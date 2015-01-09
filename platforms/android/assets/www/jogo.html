@@ -14,8 +14,8 @@ var filaEscolhida = -1;
 var fileira;
 var coluna;
 var nivel;
-
-document.addEventListener("deviceready", function()
+$(document).ready(function(e) 
+//document.addEventListener("deviceready", function()
 {
 	nivel = window.localStorage.getItem('nivel') || 1;
 

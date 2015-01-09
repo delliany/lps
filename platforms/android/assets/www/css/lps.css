@@ -165,15 +165,6 @@ h1{
 	width: 34px;
 	height: 34px;	
 }
-.perola2{
-	width: 34px;
-	height: 34px;	
-	background-color: #FDF9BC;
-	-webkit-border-radius: 20px;
-	-webkit-transition: width 2s, height 2s, transform 2s;
-	-webkit-transform: scale(0);
-	
-}
 .box_perolas{
 	position: fixed;
 	z-index: 5;	
@@ -189,6 +180,10 @@ h1{
     list-style: none;
    	display: inline-block;
 	margin-top: -10px;
+}
+.perola_animation{
+	-webkit-transform: scale(0,0);
+	-webkit-transition: 1s;
 }
 .fundo_sobre{
 	background-image: url(../img/sobre.png);

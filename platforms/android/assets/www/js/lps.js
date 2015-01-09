@@ -119,9 +119,9 @@ function retirarPerola(linha, coluna)
 	var id = linha.toString().concat('',coluna.toString());
 
 	listaPerolas[linha][coluna] = 0;
-	//$('#'+id).fadeOut(150);
-	$('#'+id).removeClass('perola');
-	$('#'+id).addClass('perola2');
+	//$('#'+id).fadeOut(500,"linear");
+	//$('#'+id).removeClass('perola');
+	$('#'+id).addClass('perola_animation');
 }
 
 function jogadaMaquina()
