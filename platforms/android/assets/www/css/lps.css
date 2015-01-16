@@ -88,7 +88,6 @@ body {
 	z-index: 3;
 	position: relative;
 	width: 125px;
-	background-color: #FFF;
 	margin-left: -62.5px;
 }
 .botao{
@@ -183,7 +182,7 @@ h1{
 }
 .perola_animation{
 	-webkit-transform: scale(0,0);
-	-webkit-transition: 1s;
+	-webkit-transition: 500ms;
 }
 .fundo_sobre{
 	background-image: url(../img/sobre.png);

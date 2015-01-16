@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.lps"
     android:hardwareAccelerated="true"
-    android:versionCode="1"
+    android:versionCode="3"
     android:versionName="0.0.1" android:installLocation="preferExternal">
 
     <supports-screens
