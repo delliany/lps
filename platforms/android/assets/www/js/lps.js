@@ -17,11 +17,29 @@ document.addEventListener("deviceready", function()
 
 function tocarMedia()
 {
-	myMedia = new Media("/android_asset/www/audio/somJogo.mid");
+	try{
+		
+		myMedia = new Media("/android_asset/www/audio/somJogo.mid");
 
-	positionMedia = window.localStorage.getItem("position") || 0;
-	myMedia.seekTo(positionMedia*1000);
-	myMedia.play();
+		positionMedia = window.localStorage.getItem("position") || 0;
+		myMedia.seekTo(positionMedia*1000);
+		myMedia.play();
+	}catch (e) {
+		console.log(e);
+	}
+}
+
+function habilitarCarregamento()
+{
+	navigator.notification.activityStart("Last Pearl to Shine","Carregando...");
+}
+
+function desabilitarCarregamento()
+{
+	window.setTimeout(function()
+	{
+		navigator.notification.activityStop();
+	}, 300);
 }
 
 function obterPosiMedia()

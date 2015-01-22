@@ -29,6 +29,13 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/com.megster.cordova.bluetoothserial/www/bluetoothSerial.js",
+        "id": "com.megster.cordova.bluetoothserial.bluetoothSerial",
+        "clobbers": [
+            "window.bluetoothSerial"
+        ]
+    },
+    {
         "file": "plugins/org.apache.cordova.file/www/DirectoryEntry.js",
         "id": "org.apache.cordova.file.DirectoryEntry",
         "clobbers": [
@@ -181,6 +188,7 @@ module.exports.metadata =
     "org.apache.cordova.media": "0.2.16-dev",
     "org.apache.cordova.dialogs": "0.2.12-dev",
     "org.apache.cordova.console": "0.2.13-dev",
+    "com.megster.cordova.bluetoothserial": "0.3.4",
     "org.apache.cordova.file": "1.3.1"
 }
 // BOTTOM OF METADATA

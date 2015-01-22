@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.lps"
     android:hardwareAccelerated="true"
+    android:installLocation="preferExternal"
     android:versionCode="3"
-    android:versionName="0.0.1" android:installLocation="preferExternal">
+    android:versionName="0.0.1" >
 
     <supports-screens
         android:anyDensity="true"
@@ -16,7 +17,8 @@
     <application
         android:hardwareAccelerated="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name" android:persistent="false">
+        android:label="@string/app_name"
+        android:persistent="false" >
         <activity
             android:name="LPS"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
@@ -35,12 +37,14 @@
     <uses-sdk
         android:minSdkVersion="7"
         android:targetSdkVersion="19" />
-    
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
 </manifest>

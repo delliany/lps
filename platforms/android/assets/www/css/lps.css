@@ -195,3 +195,26 @@ h1{
 	left: 0;
 	z-index: 2;
 }
+
+.bluetooth{
+	width: 55%;
+	height: 250px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -125px;
+	margin-left: -27%;
+	z-index: 3;	
+	text-align: center;
+}
+.bluetooth li{
+	color: #FDF9BC;
+	list-style: none;
+	padding: 5px 0px;
+	margin: 5px 0px; 
+	-webkit-border-radius: 10px;
+	-webkit-box-shadow: inset 0 1px 1px -1px white, 0 1px 5px rgba(0, 0, 0, .5);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F20018), to(#970007));
+	-webkit-transition: left 200ms ease-in;
+	border-color: #D40016;
+}
