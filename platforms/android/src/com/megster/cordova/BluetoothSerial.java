@@ -50,6 +50,7 @@ public class BluetoothSerial extends CordovaPlugin {
 
     // callbacks
     private CallbackContext connectCallback;
+    private CallbackContext testePlayerCallback;
     private CallbackContext dataAvailableCallback;
     private CallbackContext rawDataAvailableCallback;
     private CallbackContext readCallback;
@@ -165,7 +166,8 @@ public class BluetoothSerial extends CordovaPlugin {
 
         } else if (action.equals(READ)) {
 
-        	readCallback = callbackContext;
+        	//readCallback = callbackContext;
+        	testePlayerCallback = callbackContext;
 
         } else if (action.equals(READ_UNTIL)) {
 
@@ -174,7 +176,8 @@ public class BluetoothSerial extends CordovaPlugin {
 
         }  else if (action.equals(CONNECT_PLAYER)) {
 
-        	connectCallback = callbackContext;
+        	Log.i("delly", "aqui");
+        	testePlayerCallback = callbackContext;
 
         } else if (action.equals(SUBSCRIBE_RAW)) {
 
@@ -403,16 +406,16 @@ public class BluetoothSerial extends CordovaPlugin {
     };
 
     private void notifyConnectionLost(String error) {
-        if (connectCallback != null) {
-            connectCallback.error(error);
-            connectCallback = null;
+        if (testePlayerCallback != null) {
+        	testePlayerCallback.error(error);
+        	testePlayerCallback = null;
         }
     }
 
     private void notifyConnectionSuccess() {
-        if (connectCallback != null) {
+        if (testePlayerCallback != null) {
             PluginResult result = new PluginResult(PluginResult.Status.OK);
-            connectCallback.sendPluginResult(result);
+            testePlayerCallback.sendPluginResult(result);
         }
     }
 

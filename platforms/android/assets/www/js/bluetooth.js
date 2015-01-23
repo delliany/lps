@@ -41,7 +41,6 @@ var app = {
     	habilitarCarregamento();
         
         bluetoothSerial.list(app.ondevicelist, app.generateFailureFunction("List Failed"));
-        bluetoothSerial.connectPlayer(app.onconnectplayer, app.generateFailureFunction("Connect Failed"));
     },
     connect: function() {
     	var device = arguments[0];
@@ -49,6 +48,9 @@ var app = {
         console.log("Requesting connection to " + device);
         bluetoothSerial.connect(device, app.onconnect, app.ondisconnect);
         bluetoothSerial.read(app.onmessage, app.generateFailureFunction("Read Failed"));
+//        bluetoothSerial.connectPlayer(app.onconnectplayer, function(){
+//        	alert('erro');
+//        });
     },
     disconnect: function(event) {
         if (event) {
@@ -104,7 +106,6 @@ var app = {
     	nome = deviceName;
 //    	alert('esperando '+deviceName+' conectarsse');
     	habilitarCarregamento();
-
     },
     onconnectplayer: function() {
         
@@ -117,10 +118,8 @@ var app = {
         if (reason) {
             details += ": " + JSON.stringify(reason);
         }
-        connection.style.display = "block";
-        app.enable(connectButton);
-        chat.style.display = "none";
-        app.setStatus("Disconnected");
+
+        alert("Disconnected "+details);
     },
     onmessage: function(message) {
 		alert(message);
