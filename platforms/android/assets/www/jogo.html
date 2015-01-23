@@ -14,17 +14,24 @@ var filaEscolhida = -1;
 var fileira;
 var coluna;
 var nivel;
-$(document).ready(function(e) 
-//document.addEventListener("deviceready", function()
+//$(document).ready(function(e) 
+document.addEventListener("deviceready", function()
 {
-	nivel = window.localStorage.getItem('nivel') || 1;
+    var param = decodeURI(window.document.URL.toString());
+    param = param.slice(param.indexOf("=") + 1);
+    
+    if(param.indexOf("nome")){
+    	$('.titulo').text(param.slice(param.indexOf("=") + 1));
+    }else{
+    	nivel = window.localStorage.getItem('nivel') || 1;
 
-	if(nivel == '2'){
-		$('.titulo').text('Nível Médio');
-	}else if(nivel == '3'){
-		$('.titulo').text('Nível Difícil');
-	}
-	
+    	if(nivel == '2'){
+    		$('.titulo').text('Nível Médio');
+    	}else if(nivel == '3'){
+    		$('.titulo').text('Nível Difícil');
+    	}
+    }
+
 	initPerolas();
 	
 	$('.perola').click(function(event)
@@ -91,76 +98,6 @@ $(document).ready(function(e)
 	}, false);
 },false);
 
-// $(document).ready(function(e) 
-// {
-// 	nivel = window.localStorage.getItem('nivel') || 1;
-
-// 	if(nivel == '2'){
-// 		$('.titulo').text('Nível Médio');
-// 	}else if(nivel == '3'){
-// 		$('.titulo').text('Nível Difícil');
-// 	}
-	
-// 	initPerolas();
-	
-// 	$('.perola').click(function(event)
-// 	{
-// 		event.preventDefault();
-// 		fileira = this.id.slice(0,1);
-// 		coluna = this.id.slice(1);
-		
-// 		if ((filaEscolhida == fileira) || (filaEscolhida == -1)) {
-// 			if (listaPerolas[fileira][coluna] == 1) {
-				
-// 				retirarPerola(fileira, coluna);
-// 				filaEscolhida = fileira;
-				
-// 				if(isUltimaPerola()){
-// 			   		atualizarPlacar(parseInt(nivel), 0);
-// 			   		navigator.notification.confirm
-// 			   		(
-// 			   				"Deseja jogar novamente?", // message
-// 			   				function(retorno)
-// 			   				{
-// 			   					if(retorno == '1' || retorno == 1 ){
-// 			   						window.location.reload();
-// 			   					}else{
-// 			   						navigator.app.backHistory();
-// 			   					}
-			   				
-// 			   				},"Perdeu :(", ['Sim', 'N\u00e3o']
-// 			   		);
-// 			    }
-// 			}
-// 		}
-// 	});
-	
-// 	$('.botao_passar').click(function ()
-// 	{
-// 		if(parseInt(filaEscolhida) != -1){
-
-// 			filaEscolhida = -1;
-// 			jogarOponente(parseInt(nivel));
-			
-// 			if(isUltimaPerola()){
-// 			    atualizarPlacar(parseInt(nivel), 1);
-// 		   		navigator.notification.confirm
-// 		   		(
-// 		   				"Parabéns!!!\nDeseja jogar novamente?", // message
-// 		   				function(retorno)
-// 		   				{
-// 		   					if(retorno == '1' || retorno == 1 ){
-// 		   						window.location.reload();
-// 		   					}else{
-// 		   						navigator.app.backHistory();
-// 		   					}
-		   				
-// 		   				},"Ganhou :)", ['Sim', 'N\u00e3o']
-// 		   		);
-// 			}
-// 		}
-// 	});
-// });
 function ajustarResolucao()
 {
 	if(window.innerHeight < 380){

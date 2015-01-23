@@ -12,8 +12,17 @@
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/bluetooth.js"></script>
 <script>
-
-document.addEventListener('deviceready', app.deviceready, false);
+document.addEventListener('deviceready', function()
+{
+	app.deviceready();
+	
+	document.addEventListener("backbutton", function()
+	{ 
+		obterPosiMedia();
+		navigator.app.backHistory();
+	}, false);
+	
+}, false);
 </script>
 </head>
 <body>

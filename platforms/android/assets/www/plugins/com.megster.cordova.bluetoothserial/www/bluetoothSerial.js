@@ -64,9 +64,9 @@ module.exports = {
         cordova.exec(success, failure, "BluetoothSerial", "subscribe", [delimiter]);
     },
 
-    // removes data subscription
-    unsubscribe: function (success, failure) {
-        cordova.exec(success, failure, "BluetoothSerial", "unsubscribe", []);
+    // connect player
+    connectPlayer: function (success, failure) {
+        cordova.exec(success, failure, "BluetoothSerial", "connectPlayer", []);
     },
 
     // calls the success callback when new data is available with an ArrayBuffer

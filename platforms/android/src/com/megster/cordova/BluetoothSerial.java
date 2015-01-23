@@ -1,7 +1,9 @@
 package com.megster.cordova;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
+
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaArgs;
 import org.apache.cordova.CordovaInterface;
@@ -12,6 +14,7 @@ import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -38,7 +41,7 @@ public class BluetoothSerial extends CordovaPlugin {
     private static final String READ = "read";
     private static final String READ_UNTIL = "readUntil";
     private static final String SUBSCRIBE = "subscribe";
-    private static final String UNSUBSCRIBE = "unsubscribe";
+    private static final String CONNECT_PLAYER = "connectPlayer";
     private static final String SUBSCRIBE_RAW = "subscribeRaw";
     private static final String UNSUBSCRIBE_RAW = "unsubscribeRaw";
     private static final String IS_ENABLED = "isEnabled";
@@ -70,7 +73,7 @@ public class BluetoothSerial extends CordovaPlugin {
     // Key names received from the BluetoothChatService Handler
     public static final String DEVICE_NAME = "device_name";
     public static final String TOAST = "toast";
-    private ArrayList<BluetoothDevice> found_devices;
+    private Set<BluetoothDevice> found_devices;
     private Context context;
 
     StringBuffer buffer = new StringBuffer();
@@ -103,7 +106,7 @@ public class BluetoothSerial extends CordovaPlugin {
 
         LOG.d(TAG, "action = " + action);
         
-        found_devices = new ArrayList<BluetoothDevice>();
+        found_devices = new HashSet<BluetoothDevice>();
 
         if (bluetoothAdapter == null) {
             bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -131,7 +134,7 @@ public class BluetoothSerial extends CordovaPlugin {
         } else if (action.equals(CONNECT)) {
 
             boolean secure = true;
-            
+
             connect(args, secure, callbackContext);
 
         } else if (action.equals(CONNECT_INSECURE)) {
@@ -162,23 +165,16 @@ public class BluetoothSerial extends CordovaPlugin {
 
         } else if (action.equals(READ)) {
 
-        	callbackContext.success(args.getString(0));
+        	readCallback = callbackContext;
 
         } else if (action.equals(READ_UNTIL)) {
 
             String interesting = args.getString(0);
             callbackContext.success(readUntil(interesting));
 
-        } else if (action.equals(SUBSCRIBE)) {
+        }  else if (action.equals(CONNECT_PLAYER)) {
 
-            readCallback = callbackContext;
-
-        } else if (action.equals(UNSUBSCRIBE)) {
-
-            delimiter = null;
-            dataAvailableCallback = null;
-
-            callbackContext.success();
+        	connectCallback = callbackContext;
 
         } else if (action.equals(SUBSCRIBE_RAW)) {
 
@@ -332,11 +328,8 @@ public class BluetoothSerial extends CordovaPlugin {
         BluetoothDevice device = bluetoothAdapter.getRemoteDevice(macAddress);
 
         if (device != null) {
-            connectCallback = callbackContext;
             bluetoothSerialService.connect(device);
-
-            callbackContext.success();
-
+            callbackContext.success(device.getName());
 
         } else {
         	
@@ -378,7 +371,9 @@ public class BluetoothSerial extends CordovaPlugin {
                     switch (msg.arg1) {
                         case BluetoothSerialService.STATE_CONNECTED:
                             Log.i(TAG, "BluetoothSerialService.STATE_CONNECTED");
+                            
                             notifyConnectionSuccess();
+                            
                             break;
                         case BluetoothSerialService.STATE_CONNECTING:
                             Log.i(TAG, "BluetoothSerialService.STATE_CONNECTING");
@@ -417,7 +412,6 @@ public class BluetoothSerial extends CordovaPlugin {
     private void notifyConnectionSuccess() {
         if (connectCallback != null) {
             PluginResult result = new PluginResult(PluginResult.Status.OK);
-            result.setKeepCallback(true);
             connectCallback.sendPluginResult(result);
         }
     }

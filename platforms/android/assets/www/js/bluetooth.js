@@ -17,7 +17,7 @@
 /* global cordova, bluetoothSerial, listButton, connectButton, sendButton, disconnectButton */
 /* global chatform, deviceList, message, messages, statusMessage, chat, connection */
 
-
+var nome = '';
 var app = {
     deviceready: function() {
 
@@ -41,14 +41,14 @@ var app = {
     	habilitarCarregamento();
         
         bluetoothSerial.list(app.ondevicelist, app.generateFailureFunction("List Failed"));
+        bluetoothSerial.connectPlayer(app.onconnectplayer, app.generateFailureFunction("Connect Failed"));
     },
     connect: function() {
     	var device = arguments[0];
 
-        alert("Connecting..."+device);
         console.log("Requesting connection to " + device);
         bluetoothSerial.connect(device, app.onconnect, app.ondisconnect);
-        bluetoothSerial.subscribe("\n", app.onmessage, app.generateFailureFunction("Subscribe Failed"));
+        bluetoothSerial.read(app.onmessage, app.generateFailureFunction("Read Failed"));
     },
     disconnect: function(event) {
         if (event) {
@@ -69,7 +69,7 @@ var app = {
         };
 
         bluetoothSerial.write(text, success);
-        bluetoothSerial.subscribe("\n", app.onmessage, app.generateFailureFunction("Subscribe Failed"));
+        bluetoothSerial.read("\n", app.onmessage, app.generateFailureFunction("Read Failed"));
         return false;
     },
     ondevicelist: function(devices) {
@@ -99,8 +99,18 @@ var app = {
 
         desabilitarCarregamento();
     },
-    onconnect: function() {
-        alert("Conectado");
+    onconnect: function(deviceName) {
+        
+    	nome = deviceName;
+//    	alert('esperando '+deviceName+' conectarsse');
+    	habilitarCarregamento();
+
+    },
+    onconnectplayer: function() {
+        
+    	desabilitarCarregamento();
+    	window.location = 'jogo.html?jogo=jogador&nome='+nome;
+
     },
     ondisconnect: function(reason) {
         var details = "";
@@ -143,7 +153,7 @@ var app = {
             if (reason) {
                 details += ": " + JSON.stringify(reason);
             }
-            app.setStatus(message + details);
+            alert(message + details);
         };
         return func;
     }
