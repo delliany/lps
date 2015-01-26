@@ -119,7 +119,22 @@ var app = {
     onmessage: function(message) {
 
     	if(message.indexOf("msg") != -1){
-    		alert(message);
+    		var msg = message.split('&');
+    		
+			navigator.notification.confirm
+			(
+					msg[1], // message
+					function(retorno)
+					{
+						if(retorno == '1' || retorno == 1 ){
+							window.location.reload();
+						}else{
+							navigator.app.backHistory();
+						}
+					
+					},msg[0].slice(message.indexOf("=")+1), ['Sim', 'N\u00e3o']
+			 );
+    		
     	}else{
     		
     		var perolas = message.split(';');

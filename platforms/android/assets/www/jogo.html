@@ -84,7 +84,14 @@ function mostrarJogo()
 				}
 
 				if(isUltimaPerola()){
-					atualizarPlacar(parseInt(nivel), 0);
+					
+					if(bluetooth){
+						
+						app.sendData('msg=Ganhou :)&Parabéns!!!\nDeseja jogar novamente?');
+					}else{
+						atualizarPlacar(parseInt(nivel), 0);
+					}
+					
 					navigator.notification.confirm
 					(
 							"Deseja jogar novamente?", // message
