@@ -218,3 +218,53 @@ h1{
 	-webkit-transition: left 200ms ease-in;
 	border-color: #D40016;
 }
+#blanket {
+	background-color: #111;
+	opacity: 0.65;
+	background: black;
+	position: absolute;
+	z-index: 9;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+}
+#popUpDiv {
+	position: fixed;
+	width: 250px;
+	height: 200px;
+	z-index: 99;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -125px;
+	-webkit-transform: translate3d(0, 0, 0);
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+.popostar {
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+.popostar td {
+	font-family:'Snap ITC', sans-serif;
+	text-align: center;		
+	color: #FDF9BC;
+	font-size: 14px;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	vertical-align: middle;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#F20018), to(#970007));
+	border-color: #D40016;
+}
+.popostar th {
+	font-family:'Snap ITC', sans-serif;
+	text-align: center;		
+	color: #F20018;
+	padding-left: 7px;
+	padding-right: 7px;
+	padding-top: 7px;
+	padding-bottom: -5px;
+	font-weight: bold;
+	font-size: 16px;
+}

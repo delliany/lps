@@ -23,17 +23,13 @@ var app = {
 
         // wire buttons to functions
 
-		$('#listButton').on('touchstart', function(){
-    		app.list();
-		});
-		
-		$('#sendButton').on('touchstart', function(){
-    		app.sendData();
-		});
-		
-		$('#disconnectButton').on('touchstart', function(){
-    		app.disconnect();
-		});
+//		$('#listButton').on('touchstart', function(){
+//    		app.list();
+//		});
+//		
+//		$('#disconnectButton').on('touchstart', function(){
+//    		app.disconnect();
+//		});
 		
     	app.list();
     },
@@ -48,9 +44,9 @@ var app = {
         console.log("Requesting connection to " + device);
         bluetoothSerial.connect(device, app.onconnect, app.ondisconnect);
         bluetoothSerial.read(app.onmessage, app.generateFailureFunction("Read Failed"));
-//        bluetoothSerial.connectPlayer(app.onconnectplayer, function(){
-//        	alert('erro');
-//        });
+        bluetoothSerial.connectPlayer(app.onconnectplayer, function(){
+        	alert('erro');
+        });
     },
     disconnect: function(event) {
         if (event) {
@@ -60,18 +56,16 @@ var app = {
         app.setStatus("Disconnecting...");
         bluetoothSerial.disconnect(app.ondisconnect);
     },
-    sendData: function(event) {
-    	event.preventDefault();
+    sendData: function() {
 
-        var text = message.value + "\n";
+        var perolas = arguments[0];
         var success = function () {
-            //messages.value = "";
-            messages.value += ("Us: " + text);
-            messages.scrollTop = messages.scrollHeight;
+            console.log('esperando jogador fazer sua jogada ');
+            $('.botao_passar').hide();
         };
 
-        bluetoothSerial.write(text, success);
-        bluetoothSerial.read("\n", app.onmessage, app.generateFailureFunction("Read Failed"));
+        bluetoothSerial.write(perolas, success);
+        bluetoothSerial.read(app.onmessage, app.generateFailureFunction("Read Failed"));
         return false;
     },
     ondevicelist: function(devices) {
@@ -86,7 +80,7 @@ var app = {
             } 
         });
         
-        $('ul').html(deviceList);
+        $('.bluetooth ul').html(deviceList);
         
         console.log(deviceList);
 
@@ -95,7 +89,7 @@ var app = {
             alert('sem devices');
         }
         
- 	    $('li').on('touchstart', function(){
+ 	    $('.bluetooth li').on('touchstart', function(){
 	        app.connect(this.id);
 	    });
 
@@ -109,9 +103,10 @@ var app = {
     },
     onconnectplayer: function() {
         
-    	desabilitarCarregamento();
-    	window.location = 'jogo.html?jogo=jogador&nome='+nome;
-
+    	navigator.notification.activityStop();
+    	//window.location = 'jogo.html?jogo=jogador&nome='+nome;
+		$('.titulo').text(nome);
+		mostrarJogo();
     },
     ondisconnect: function(reason) {
         var details = "";
@@ -122,9 +117,21 @@ var app = {
         alert("Disconnected "+details);
     },
     onmessage: function(message) {
-		alert(message);
-        messages.value += "Them: " + message+"\n";
-        messages.scrollTop = messages.scrollHeight;
+
+    	if(message.indexOf("msg") != -1){
+    		alert(message);
+    	}else{
+    		
+    		var perolas = message.split(';');
+    		
+    		for(var i=0; i<perolas.length-1; i++)
+    		{
+    			var linha = perolas[i].slice(0,1);
+    	    	var coluna = perolas[i].slice(1);
+    	    	
+    			retirarPerola(parseInt(linha), parseInt(coluna));
+    		}
+    	}
     },
     setStatus: function(message) { // setStatus
         console.log(message);

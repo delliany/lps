@@ -13,7 +13,6 @@
 <script>
 document.addEventListener("deviceready", function()
 {	
-	window.location = 'bluetooth.html';
 	$('.botao').click(function()
 	{
 		obterPosiMedia();
@@ -21,7 +20,7 @@ document.addEventListener("deviceready", function()
 		switch($(this).val())
 		{
 			case 'Jogar':
-				window.location = 'jogo.html';
+				popup('popUpDiv');
 				break;
 			case 'Opções':
 				window.location = 'opcoes.html';
@@ -66,6 +65,22 @@ document.addEventListener("deviceready", function()
       <input type="button" class="botao" value="Sobre">
     </li>
   </ul>
+</div>
+<div id="blanket" style="display:none;" onclick="popup('popUpDiv')"></div>
+<div id="popUpDiv" style="display:none;">
+  <table cellspacing="0" width="100%" height="200" id="table1" bgcolor="#FDF9BC" class="popostar">
+      <th>Que tipo de jogo deseja jogar?</th>
+    <tr width="100" height="40" valign="middle" align="center" >
+      <td align="center" valign="middle" onclick="window.location='jogo.html?jogo=cpu';popup('popUpDiv');">
+          JogadorXCPU
+      </td>
+    </tr>
+    <tr width="100" height="40" valign="middle" align="center" >
+      <td align="center" onclick="window.location='jogo.html?jogo=bluetooth';popup('popUpDiv');" valign="middle">
+          JogadorXJogador
+      </td>
+    </tr>
+  </table>
 </div>
 <script>
 	if(window.innerHeight < 380){

@@ -6,23 +6,40 @@
 <meta name="viewport" content="width=device-width, user-scalable=no" />
 <title>Jogo</title>
 <link href="css/lps.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/lps.js"></script>
-<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/bluetooth.js"></script>
 <script>
 var filaEscolhida = -1;
 var fileira;
 var coluna;
 var nivel;
+var bluetooth = false;
+var perolasRetidas = '';
 //$(document).ready(function(e) 
 document.addEventListener("deviceready", function()
 {
-    var param = decodeURI(window.document.URL.toString());
-    param = param.slice(param.indexOf("=") + 1);
-    
-    if(param.indexOf("nome")){
-    	$('.titulo').text(param.slice(param.indexOf("=") + 1));
-    }else{
+    var param = window.document.URL.toString();
+
+	if(param.indexOf('bluetooth') != -1){
+
+		bluetoothSerial.isEnabled(function()
+		{	
+			$('#bluetooth').show();
+			bluetooth = true;
+			
+			window.setTimeout(function()
+			{
+				app.deviceready();
+			}, 200);
+		},function(){
+			alert('Habilite bluetooth');
+			navigator.app.backHistory();
+		});
+
+	}else{
+		
     	nivel = window.localStorage.getItem('nivel') || 1;
 
     	if(nivel == '2'){
@@ -30,67 +47,10 @@ document.addEventListener("deviceready", function()
     	}else if(nivel == '3'){
     		$('.titulo').text('Nível Difícil');
     	}
-    }
+    	
+		mostrarJogo();
+	}
 
-	initPerolas();
-	
-	$('.perola').click(function(event)
-	{
-		event.preventDefault();
-		fileira = this.id.slice(0,1);
-		coluna = this.id.slice(1);
-		
-		if ((filaEscolhida == fileira) || (filaEscolhida == -1)) {
-			if (listaPerolas[fileira][coluna] == 1) {
-				
-				retirarPerola(fileira, coluna);
-				filaEscolhida = fileira;
-				
-				if(isUltimaPerola()){
-			   		atualizarPlacar(parseInt(nivel), 0);
-			   		navigator.notification.confirm
-			   		(
-			   				"Deseja jogar novamente?", // message
-			   				function(retorno)
-			   				{
-			   					if(retorno == '1' || retorno == 1 ){
-			   						window.location.reload();
-			   					}else{
-			   						navigator.app.backHistory();
-			   					}
-			   				
-			   				},"Perdeu :(", ['Sim', 'N\u00e3o']
-			   		);
-			    }
-			}
-		}
-	});
-	
-	$('.botao_passar').click(function ()
-	{
-		if(parseInt(filaEscolhida) != -1){
-
-			filaEscolhida = -1;
-			jogarOponente(parseInt(nivel));
-			
-			if(isUltimaPerola()){
-			    atualizarPlacar(parseInt(nivel), 1);
-		   		navigator.notification.confirm
-		   		(
-		   				"Parabéns!!!\nDeseja jogar novamente?", // message
-		   				function(retorno)
-		   				{
-		   					if(retorno == '1' || retorno == 1 ){
-		   						window.location.reload();
-		   					}else{
-		   						navigator.app.backHistory();
-		   					}
-		   				
-		   				},"Ganhou :)", ['Sim', 'N\u00e3o']
-		   		);
-			}
-		}
-	});
 	document.addEventListener("backbutton", function()
 	{ 
 		obterPosiMedia();
@@ -98,57 +58,140 @@ document.addEventListener("deviceready", function()
 	}, false);
 },false);
 
+function mostrarJogo()
+{
+	$('#bluetooth').hide();
+	$('#jogar').show();
+	
+	ajustarResolucao();
+	
+	initPerolas();
+	
+	$('.perola').click(function(event)
+	{
+		event.preventDefault();
+		fileira = parseInt(this.id.slice(0,1));
+		coluna  = parseInt(this.id.slice(1));
+		
+		alert(filaEscolhida);
+		alert(fileira+''+coluna);
+		alert(listaPerolas[fileira][coluna]);
+		
+		if ((filaEscolhida == fileira) || (filaEscolhida == -1)) {
+			if (listaPerolas[fileira][coluna] == 1) {
+				
+				retirarPerola(fileira, coluna);
+				filaEscolhida = fileira;
+				
+				if(bluetooth){
+					perolasRetidas += fileira+''+coluna+';';
+				}
+
+				if(isUltimaPerola()){
+					atualizarPlacar(parseInt(nivel), 0);
+					navigator.notification.confirm
+					(
+							"Deseja jogar novamente?", // message
+							function(retorno)
+							{
+								if(retorno == '1' || retorno == 1 ){
+									window.location.reload();
+								}else{
+									navigator.app.backHistory();
+								}
+							
+							},"Perdeu :(", ['Sim', 'N\u00e3o']
+					 );
+				 }
+			 }
+		  }
+	  });
+	
+	  $('.botao_passar').click(function ()
+	  {
+		  if(parseInt(filaEscolhida) != -1){
+  
+			  filaEscolhida = -1;
+			  
+			  if(bluetooth){
+				  app.sendData(perolasRetidas);
+				  perolasRetidas = '';
+			  }else{
+				  jogarOponente(parseInt(nivel));
+			  }
+  
+			  if(isUltimaPerola()){
+				  atualizarPlacar(parseInt(nivel), 1);
+				  navigator.notification.confirm
+				  (
+					  "Parabéns!!!\nDeseja jogar novamente?", // message
+					  function(retorno)
+					  {
+						  if(retorno == '1' || retorno == 1 ){
+							  window.location.reload();
+						  }else{
+							  navigator.app.backHistory();
+						  }
+					  
+					  },"Ganhou :)", ['Sim', 'N\u00e3o']
+				  );
+			  }
+		  }
+	   });		
+}
+
 function ajustarResolucao()
 {
 	if(window.innerHeight < 380){
-		alert('aqui');
-	   document.getElementsByClassName('titulo').style.marginBottom = '50px';
-	   document.getElementsByClassName('concha').style.position = 'absolute';
-	   //document.getElementsByClassName('concha').style.backgroundSize = '250px 250px;';
-	   document.getElementsByClassName('fundo_jogo').style.position = 'absolute'; 
+		   document.getElementsByClassName('titulo').item(0).style.top = '2px';
+		   document.getElementsByClassName('fundo_jogo').item(0).style.position = 'absolute'; 
+		   //document.getElementsByClassName('fundo_jogo').item(0).style.height = document.height+'px';
+		   document.getElementsByClassName('concha').item(0).style.position = 'absolute';
+		   document.getElementsByClassName('concha').item(0).style.backgroundSize = '280px 270px';
+		   document.getElementsByClassName('concha').item(0).style.marginTop = '-115px';
+		   document.getElementsByClassName('concha').item(0).style.marginLeft = '-125px';
+		   document.getElementsByClassName('box_perolas').item(0).style.position = 'absolute';
+		   document.getElementsByClassName('box_perolas').item(0).style.marginLeft = '-190px';
+		   document.getElementsByClassName('box_perolas').item(0).style.marginTop = '-95px';
 	}
 }
 </script>
 </head>
 <body>
-<p class="titulo">Nível Fácil</p>
-<div class="fundo_jogo"></div>
-<div class="concha">
-  <div class="box_perolas" align="center">
+<div id="bluetooth" style="display:none">
+  <p class="titulo">Bluetooth</p>
+  <div class="fundo_menu"></div>
+  <div class="bluetooth">
     <ul>
-      <li class="perola" id="00"></li>
-      <li class="perola" id="01"></li>
-      <li class="perola" id="02"></li>
-    </ul>
-    <ul>
-      <li class="perola" id="10"></li>
-      <li class="perola" id="11"></li>
-      <li class="perola" id="12"></li>
-      <li class="perola" id="13"></li>
-    </ul>
-    <ul>
-      <li class="perola" id="20"></li>
-      <li class="perola" id="21"></li>
-      <li class="perola" id="22"></li>
-      <li class="perola" id="23"></li>
-      <li class="perola" id="24"></li>
     </ul>
   </div>
 </div>
-<input type="button" class="botao_passar" value="Passar">
-<script>
-	if(window.innerHeight < 380){
-	   document.getElementsByClassName('titulo').item(0).style.top = '2px';
-	   document.getElementsByClassName('fundo_jogo').item(0).style.position = 'absolute'; 
-	   //document.getElementsByClassName('fundo_jogo').item(0).style.height = document.height+'px';
-	   document.getElementsByClassName('concha').item(0).style.position = 'absolute';
-	   document.getElementsByClassName('concha').item(0).style.backgroundSize = '280px 270px';
-	   document.getElementsByClassName('concha').item(0).style.marginTop = '-115px';
-	   document.getElementsByClassName('concha').item(0).style.marginLeft = '-125px';
-	   document.getElementsByClassName('box_perolas').item(0).style.position = 'absolute';
-	   document.getElementsByClassName('box_perolas').item(0).style.marginLeft = '-190px';
-	   document.getElementsByClassName('box_perolas').item(0).style.marginTop = '-95px';
-	}
-</script>
+<div id="jogar" style="display:none">
+  <p class="titulo">Nível Fácil</p>
+  <div class="fundo_jogo"></div>
+  <div class="concha">
+    <div class="box_perolas" align="center">
+      <ul>
+        <li class="perola" id="00"></li>
+        <li class="perola" id="01"></li>
+        <li class="perola" id="02"></li>
+      </ul>
+      <ul>
+        <li class="perola" id="10"></li>
+        <li class="perola" id="11"></li>
+        <li class="perola" id="12"></li>
+        <li class="perola" id="13"></li>
+      </ul>
+      <ul>
+        <li class="perola" id="20"></li>
+        <li class="perola" id="21"></li>
+        <li class="perola" id="22"></li>
+        <li class="perola" id="23"></li>
+        <li class="perola" id="24"></li>
+      </ul>
+    </div>
+  </div>
+  <input type="button" class="botao_passar" value="Passar">
+</div>
 </body>
 </html>
