@@ -70,8 +70,8 @@ function mostrarJogo()
 	$('.perola').click(function(event)
 	{
 		event.preventDefault();
-		fileira = parseInt(this.id.slice(0,1));
-		coluna  = parseInt(this.id.slice(1));
+		fileira = this.id.slice(0,1);
+		coluna  = this.id.slice(1);
 		
 		if ((filaEscolhida == fileira) || (filaEscolhida == -1)) {
 			if (listaPerolas[fileira][coluna] == 1) {
@@ -80,7 +80,7 @@ function mostrarJogo()
 				filaEscolhida = fileira;
 				
 				if(bluetooth){
-					perolasRetidas += fileira+''+coluna+';';
+					perolasRetidas += fileira+coluna+';';
 				}
 
 				if(isUltimaPerola()){

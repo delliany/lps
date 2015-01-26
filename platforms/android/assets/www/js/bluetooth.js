@@ -131,6 +131,8 @@ var app = {
     	    	
     			retirarPerola(parseInt(linha), parseInt(coluna));
     		}
+    		
+    		$('.botao_passar').show();
     	}
     },
     setStatus: function(message) { // setStatus
