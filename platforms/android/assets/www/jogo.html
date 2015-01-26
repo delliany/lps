@@ -73,10 +73,6 @@ function mostrarJogo()
 		fileira = parseInt(this.id.slice(0,1));
 		coluna  = parseInt(this.id.slice(1));
 		
-		alert(filaEscolhida);
-		alert(fileira+''+coluna);
-		alert(listaPerolas[fileira][coluna]);
-		
 		if ((filaEscolhida == fileira) || (filaEscolhida == -1)) {
 			if (listaPerolas[fileira][coluna] == 1) {
 				
@@ -171,18 +167,18 @@ function ajustarResolucao()
   <div class="fundo_jogo"></div>
   <div class="concha">
     <div class="box_perolas" align="center">
-      <ul>
+      <ul class="fileira">
         <li class="perola" id="00"></li>
         <li class="perola" id="01"></li>
         <li class="perola" id="02"></li>
       </ul>
-      <ul>
+      <ul class="fileira">
         <li class="perola" id="10"></li>
         <li class="perola" id="11"></li>
         <li class="perola" id="12"></li>
         <li class="perola" id="13"></li>
       </ul>
-      <ul>
+      <ul class="fileira">
         <li class="perola" id="20"></li>
         <li class="perola" id="21"></li>
         <li class="perola" id="22"></li>

@@ -57,9 +57,9 @@ function obterPosiMedia()
 
 function initPerolas()
 {
-	var linhas = document.getElementsByTagName('ul');
+	var linhas = document.getElementsByClassName('fileira');
 	var colunas;
-	
+
 	for(var aux=0; aux<linhas.length; aux++)
 	{
 		colunas = linhas.item(aux).getElementsByTagName('li');
