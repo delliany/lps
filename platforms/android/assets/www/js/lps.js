@@ -29,9 +29,13 @@ function tocarMedia()
 	}
 }
 
-function habilitarCarregamento()
+function habilitarCarregamento(msg)
 {
-	navigator.notification.activityStart("Last Pearl to Shine","Carregando...");
+	if(!msg){
+		msg = "Carregando...";
+	}
+	
+	navigator.notification.activityStart("Last Pearl to Shine",msg);
 }
 
 function desabilitarCarregamento()

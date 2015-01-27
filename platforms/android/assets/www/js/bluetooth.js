@@ -59,9 +59,11 @@ var app = {
     sendData: function() {
 
         var perolas = arguments[0];
-        var success = function () {
+        var success = function () 
+        {
             console.log('esperando jogador fazer sua jogada ');
             $('.botao_passar').hide();
+            habilitarCarregamento('Esperando '+nome+' fazer sua jogada...');
         };
 
         bluetoothSerial.write(perolas, success);
@@ -99,13 +101,13 @@ var app = {
         
     	nome = deviceName;
 //    	alert('esperando '+deviceName+' conectarsse');
-    	habilitarCarregamento();
+    	habilitarCarregamento('Esperando '+deviceName+' conectar...');
     },
     onconnectplayer: function() {
         
     	navigator.notification.activityStop();
     	//window.location = 'jogo.html?jogo=jogador&nome='+nome;
-		$('.titulo').text(nome);
+    	$('.titulo').text('Eu x '+nome);
 		mostrarJogo();
     },
     ondisconnect: function(reason) {
@@ -118,6 +120,8 @@ var app = {
     },
     onmessage: function(message) {
 
+    	navigator.notification.activityStop();
+    	
     	if(message.indexOf("msg") != -1){
     		var msg = message.split('&');
     		
