@@ -63,7 +63,10 @@ var app = {
         {
             console.log('esperando jogador fazer sua jogada ');
             $('.botao_passar').hide();
-            habilitarCarregamento('Esperando '+nome+' fazer sua jogada...');
+            
+            if(!ultimaPerola){
+                habilitarCarregamento('Esperando '+nome+' fazer sua jogada...');
+            }
         };
 
         bluetoothSerial.write(perolas, success);
@@ -94,6 +97,9 @@ var app = {
  	    $('.bluetooth li').on('touchstart', function(){
 	        app.connect(this.id);
 	    });
+
+		var altura = $('.bluetooth ul').height();
+		$('.bluetooth ul').css('margin-top','-'+(altura/2)+'px');
 
         desabilitarCarregamento();
     },

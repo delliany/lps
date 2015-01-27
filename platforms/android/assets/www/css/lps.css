@@ -195,23 +195,22 @@ h1{
 	left: 0;
 	z-index: 2;
 }
-
-.bluetooth{
-	width: 55%;
-	height: 250px;
+.bluetooth {
+	width: 85%;
+	height: auto;
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	margin-top: -125px;
-	margin-left: -27%;
-	z-index: 3;	
+	margin-left: -48%;
+	z-index: 3;
 	text-align: center;
 }
-.bluetooth li{
+
+.bluetooth li {
 	color: #FDF9BC;
 	list-style: none;
-	padding: 5px 0px;
-	margin: 5px 0px; 
+	padding: 7px 0px;
+	margin: 5px 0px;
 	-webkit-border-radius: 10px;
 	-webkit-box-shadow: inset 0 1px 1px -1px white, 0 1px 5px rgba(0, 0, 0, .5);
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#F20018), to(#970007));
@@ -224,8 +223,8 @@ h1{
 	background: black;
 	position: absolute;
 	z-index: 9;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	width: 100%;
 	height: 100%;
 }
@@ -241,15 +240,23 @@ h1{
 	-webkit-transform: translate3d(0, 0, 0);
 	border-radius: 10px;
 	-webkit-border-radius: 10px;
+/* 	border: 2px outset #970007; */
 }
 .popostar {
 	border-radius: 10px;
 	-webkit-border-radius: 10px;
+	width: 250px;
+	height: 200px;
+	background: #FDF9BC;
+	border-collapse: separate;
+	border-spacing: 5px;
 }
-.popostar td {
+.popostar td{
 	font-family:'Snap ITC', sans-serif;
 	text-align: center;		
 	color: #FDF9BC;
+	width: 100px;
+	height: 40px;
 	font-size: 14px;
 	border-radius: 10px;
 	-webkit-border-radius: 10px;
@@ -261,10 +268,8 @@ h1{
 	font-family:'Snap ITC', sans-serif;
 	text-align: center;		
 	color: #F20018;
-	padding-left: 7px;
-	padding-right: 7px;
-	padding-top: 7px;
-	padding-bottom: -5px;
 	font-weight: bold;
 	font-size: 16px;
+	padding: 5px;
+	vertical-align: middle;
 }
