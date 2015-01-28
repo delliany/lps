@@ -27,6 +27,7 @@ body {
 	text-align: center;		
 	color: #F20018;
 	text-shadow: 2px -2px #000; 
+	text-align: center;
 	top: 35px;
 	left: 0;
 	width: 100%;
@@ -207,7 +208,7 @@ h1{
 }
 
 .bluetooth li {
-	color: #FDF9BC;
+	color: #fff;
 	list-style: none;
 	padding: 7px 0px;
 	margin: 5px 0px;
@@ -247,7 +248,7 @@ h1{
 	-webkit-border-radius: 10px;
 	width: 250px;
 	height: 200px;
-	background: #FDF9BC;
+	background: #fff;
 	border-collapse: separate;
 	border-spacing: 5px;
 }
@@ -272,4 +273,29 @@ h1{
 	font-size: 16px;
 	padding: 5px;
 	vertical-align: middle;
+}
+.popmsg {
+	position: absolute;
+	width: 75%;
+	height: 300px;
+	border-radius: 10px;
+	top: 50%;
+	left: 50%;
+	margin-left: -37.5%;
+	margin-top: -150px;
+	background-color: #fff;
+	z-index: 999;
+}
+
+.popmsg td {
+	text-align: center;
+}
+
+.popmsg p {
+	margin: 5px;
+	font-family: 'Snap ITC', sans-serif;
+	font-size: 18px;
+	text-align: center;
+	color: #F20018;
+	text-align: center;
 }

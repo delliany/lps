@@ -46,6 +46,12 @@ document.addEventListener("deviceready", function()
 
 			navigator.app.backHistory();
 		});
+		
+		if(window.innerHeight < 380){
+		   document.getElementsByClassName('titulo').item(0).style.top = '3px';
+		   document.getElementsByClassName('fundo_menu').item(0).style.position = 'absolute'; 
+		   document.getElementsByClassName('bluetooth').item(0).style.marginTop = '20px';
+		}
 
 	}else{
 		
@@ -97,24 +103,14 @@ function mostrarJogo()
 					if(bluetooth){
 						
 						ultimaPerola = true;
-						app.sendData('msg=Ganhou :)&Parabéns!!!\nDeseja jogar novamente?');
+						app.sendData('msg=Parabens!!!#img/trofeu.png');
 					}else{
 						atualizarPlacar(parseInt(nivel), 0);
 					}
 					
-					navigator.notification.confirm
-					(
-							"Deseja jogar novamente?", // message
-							function(retorno)
-							{
-								if(retorno == '1' || retorno == 1 ){
-									window.location.reload();
-								}else{
-									navigator.app.backHistory();
-								}
-							
-							},"Perdeu :(", ['Sim', 'N\u00e3o']
-					 );
+					$('#popup').show();
+					$('#tituloMsg').text('Perdeu!!!');
+					$('#imgMsg').attr('src','img/loser.png');
 				 }
 			 }
 		  }
@@ -126,36 +122,25 @@ function mostrarJogo()
   
 			  filaEscolhida = -1;
 
+			  if(bluetooth){
+				  app.sendData(perolasRetidas);
+				  perolasRetidas = '';
+			  }else{
+				  jogarOponente(parseInt(nivel));
+			  }
+			  
 			  if(isUltimaPerola()){
-				  
+
 				  if(bluetooth){
-						
 					  ultimaPerola = true;
-					  app.sendData('msg=Perdeu :(&Deseja jogar novamente?');
+					  app.sendData('msg=Perdeu!!!#img/loser.png');
 				  }else{
 					  atualizarPlacar(parseInt(nivel), 1);
 				  }
 
-				  navigator.notification.confirm
-				  (
-					  "Parabéns!!!\nDeseja jogar novamente?", // message
-					  function(retorno)
-					  {
-						  if(retorno == '1' || retorno == 1 ){
-							  window.location.reload();
-						  }else{
-							  navigator.app.backHistory();
-						  }
-					  
-					  },"Ganhou :)", ['Sim', 'N\u00e3o']
-				  );
-			  }else{
-				  if(bluetooth){
-					  app.sendData(perolasRetidas);
-					  perolasRetidas = '';
-				  }else{
-					  jogarOponente(parseInt(nivel));
-				  }
+				  $('#popup').show();
+				  $('#tituloMsg').text('Parabéns!!!');
+				  $('#imgMsg').attr('src','img/trofeu.png');
 			  }
 		  }
 	   });		
@@ -164,16 +149,16 @@ function mostrarJogo()
 function ajustarResolucao()
 {
 	if(window.innerHeight < 380){
-		   document.getElementsByClassName('titulo').item(0).style.top = '2px';
-		   document.getElementsByClassName('fundo_jogo').item(0).style.position = 'absolute'; 
+		$('#nivel').css('top','3px');
+		$('.fundo_jogo').css('position','absolute'); 
 		   //document.getElementsByClassName('fundo_jogo').item(0).style.height = document.height+'px';
-		   document.getElementsByClassName('concha').item(0).style.position = 'absolute';
-		   document.getElementsByClassName('concha').item(0).style.backgroundSize = '280px 270px';
-		   document.getElementsByClassName('concha').item(0).style.marginTop = '-115px';
-		   document.getElementsByClassName('concha').item(0).style.marginLeft = '-125px';
-		   document.getElementsByClassName('box_perolas').item(0).style.position = 'absolute';
-		   document.getElementsByClassName('box_perolas').item(0).style.marginLeft = '-190px';
-		   document.getElementsByClassName('box_perolas').item(0).style.marginTop = '-95px';
+		$('.concha').css('position','absolute');
+		$('.concha').css('background-size','280px 270px');
+		$('.concha').css('margin-top','-115px');
+		$('.concha').css('margin-left','-125px');
+		$('.box_perolas').css('position','absolute');
+		$('.box_perolas').css('margin-left','-190px');
+		$('.box_perolas').css('margin-top','-95px');
 	}
 }
 </script>
@@ -188,7 +173,7 @@ function ajustarResolucao()
   </div>
 </div>
 <div id="jogar" style="display:none">
-  <p class="titulo">Nível Fácil</p>
+  <p id="nivel" class="titulo">Nível Fácil</p>
   <div class="fundo_jogo"></div>
   <div class="concha">
     <div class="box_perolas" align="center">
@@ -213,6 +198,24 @@ function ajustarResolucao()
     </div>
   </div>
   <input type="button" class="botao_passar" value="Passar">
+</div>
+<div id="popup" style="display: none">
+  <div id="blanket"></div>
+  <div class="popmsg">
+    <center>
+      <p id="tituloMsg"></p>
+      <img src="" width="180" height="180" id="imgMsg"/>
+      <p>Jogar novamente?</p>
+      <table width="100%" border="0" style="margin-top: 10px;">
+        <tbody>
+          <tr>
+            <td><input type="button" class="botao" value="Sim" onClick="window.location.reload();"></td>
+            <td><input type="button" class="botao" value="Não" onClick="navigator.app.backHistory();"></td>
+          </tr>
+        </tbody>
+      </table>
+    </center>
+  </div>
 </div>
 </body>
 </html>

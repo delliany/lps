@@ -20,17 +20,6 @@
 var nome = '';
 var app = {
     deviceready: function() {
-
-        // wire buttons to functions
-
-//		$('#listButton').on('touchstart', function(){
-//    		app.list();
-//		});
-//		
-//		$('#disconnectButton').on('touchstart', function(){
-//    		app.disconnect();
-//		});
-		
     	app.list();
     },
     list: function() {
@@ -129,21 +118,11 @@ var app = {
     	navigator.notification.activityStop();
     	
     	if(message.indexOf("msg") != -1){
-    		var msg = message.split('&');
+    		var msg = message.split('#');
     		
-			navigator.notification.confirm
-			(
-					msg[1], // message
-					function(retorno)
-					{
-						if(retorno == '1' || retorno == 1 ){
-							window.location.reload();
-						}else{
-							navigator.app.backHistory();
-						}
-					
-					},msg[0].slice(message.indexOf("=")+1), ['Sim', 'N\u00e3o']
-			 );
+			$('#popup').show();
+			$('#tituloMsg').text(msg[0].slice(message.indexOf("=")+1));
+			$('#imgMsg').attr('src',msg[1]);
     		
     	}else{
     		

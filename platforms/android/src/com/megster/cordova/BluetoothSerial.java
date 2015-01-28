@@ -25,6 +25,7 @@ import android.net.ConnectivityManager;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * PhoneGap Plugin for Serial Communication over Bluetooth
@@ -152,8 +153,9 @@ public class BluetoothSerial extends CordovaPlugin {
         } else if (action.equals(WRITE)) {
 
         	if (bluetoothSerialService.getState() == BluetoothSerialService.STATE_CONNECTED) {
-                
-            	byte[] data = args.getArrayBuffer(0);
+
+            	byte[] data = args.getString(0).getBytes();
+            	
                 bluetoothSerialService.write(data);
                 readCallback = callbackContext;
                 callbackContext.success();
@@ -394,6 +396,9 @@ public class BluetoothSerial extends CordovaPlugin {
                     break;
                 case MESSAGE_DEVICE_NAME:
                     Log.i(TAG, msg.getData().getString(DEVICE_NAME));
+                    // save the connected device's name
+                    Toast.makeText(context, "Connected to "
+                                   + msg.getData().getString(DEVICE_NAME), Toast.LENGTH_SHORT).show();
                     break;
                 case MESSAGE_TOAST:
                     String message = msg.getData().getString(TOAST);
