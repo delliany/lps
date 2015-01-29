@@ -111,7 +111,7 @@ var app = {
             details += ": " + JSON.stringify(reason);
         }
 
-        alert("Disconnected "+details);
+        alert("Disconectado "+details);
     },
     onmessage: function(message) {
 

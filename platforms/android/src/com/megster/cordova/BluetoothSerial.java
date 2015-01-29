@@ -346,7 +346,8 @@ public class BluetoothSerial extends CordovaPlugin {
     private final Handler mHandler = new Handler() {
 
          public void handleMessage(Message msg) {
-             switch (msg.what) {
+             switch (msg.what) 
+             {
                  case MESSAGE_READ:
 
                     byte[] readBuf = (byte[]) msg.obj;
@@ -371,7 +372,8 @@ public class BluetoothSerial extends CordovaPlugin {
 
                     if(D) Log.i(TAG, "MESSAGE_STATE_CHANGE: " + msg.arg1);
      
-                    switch (msg.arg1) {
+                    switch (msg.arg1) 
+                    {
                         case BluetoothSerialService.STATE_CONNECTED:
                             Log.i(TAG, "BluetoothSerialService.STATE_CONNECTED");
                             
