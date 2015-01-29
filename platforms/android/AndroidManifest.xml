@@ -3,7 +3,7 @@
     package="br.com.lps"
     android:hardwareAccelerated="true"
     android:installLocation="preferExternal"
-    android:versionCode="4"
+    android:versionCode="5"
     android:versionName="1.0.0" >
 
     <supports-screens
