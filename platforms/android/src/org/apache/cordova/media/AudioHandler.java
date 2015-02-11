@@ -90,6 +90,7 @@ public class AudioHandler extends CordovaPlugin {
         }
         else if (action.equals("startPlayingAudio")) {
             String target = args.getString(1);
+            boolean loop = args.optBoolean(2);
             String fileUriStr;
             try {
                 Uri targetUri = resourceApi.remapUri(Uri.parse(target));
@@ -97,7 +98,7 @@ public class AudioHandler extends CordovaPlugin {
             } catch (IllegalArgumentException e) {
                 fileUriStr = target;
             }
-            this.startPlayingAudio(args.getString(0), FileHelper.stripFileProtocol(fileUriStr));
+            this.startPlayingAudio(args.getString(0), FileHelper.stripFileProtocol(fileUriStr), loop);
         }
         else if (action.equals("seekToAudio")) {
             this.seekToAudio(args.getString(0), args.getInt(1));
@@ -191,7 +192,7 @@ public class AudioHandler extends CordovaPlugin {
             // If phone idle, then resume playing those players we paused
             else if ("idle".equals(data)) {
                 for (AudioPlayer audio : this.pausedForPhone) {
-                    audio.startPlaying(null);
+                    audio.startPlaying(null, false);
                 }
                 this.pausedForPhone.clear();
             }
@@ -257,7 +258,7 @@ public class AudioHandler extends CordovaPlugin {
      * @param id				The id of the audio player
      * @param file				The name of the audio file.
      */
-    public void startPlayingAudio(final String id, final String file) {
+    public void startPlayingAudio(final String id, final String file, final boolean loop) {
         
     	final CordovaInterface cordova = this.cordova;
     	
@@ -266,7 +267,7 @@ public class AudioHandler extends CordovaPlugin {
 			@Override
 			public void run() {
 				AudioPlayer audio = getOrCreatePlayer(id, file);
-		        audio.startPlaying(file);
+		        audio.startPlaying(file, loop);
 			}
 		};
 		

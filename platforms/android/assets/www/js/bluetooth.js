@@ -120,9 +120,7 @@ var app = {
     	if(message.indexOf("msg") != -1){
     		var msg = message.split('#');
     		
-			$('#popup').show();
-			$('#tituloMsg').text(msg[0].slice(message.indexOf("=")+1));
-			$('#imgMsg').attr('src',msg[1]);
+    		mostrarMsgResult(msg[0].slice(message.indexOf("=")+1), msg[1]);
     		
     	}else{
     		

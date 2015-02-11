@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, user-scalable=no" />
 <title>Jogo</title>
 <link href="css/lps.css" rel="stylesheet" type="text/css">
+<link href="css/bubbles.css" rel="stylesheet" media="screen"  type="text/css">
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/lps.js"></script>
@@ -38,7 +39,7 @@ document.addEventListener("deviceready", function()
 		},function(){
 			navigator.notification.alert
 			(
-				'Habilite o bluetooth',  // message
+				'Habilite o bluetooth e deixe-o visível',  // message
 	            function(){},         // callback
 	            'Atenção',
 	            'OK'
@@ -108,9 +109,7 @@ function mostrarJogo()
 						atualizarPlacar(parseInt(nivel), 0);
 					}
 					
-					$('#popup').show();
-					$('#tituloMsg').text('Perdeu!!!');
-					$('#imgMsg').attr('src','img/loser.png');
+					mostrarMsgResult('Perdeu!!!','img/loser.png');
 				 }
 			 }
 		  }
@@ -138,9 +137,7 @@ function mostrarJogo()
 					  atualizarPlacar(parseInt(nivel), 1);
 				  }
 
-				  $('#popup').show();
-				  $('#tituloMsg').text('Parabéns!!!');
-				  $('#imgMsg').attr('src','img/trofeu.png');
+				  mostrarMsgResult('Parabéns!!!','img/trofeu.png');
 			  }
 		  }
 	   });		
@@ -160,6 +157,31 @@ function ajustarResolucao()
 		$('.box_perolas').css('margin-left','-190px');
 		$('.box_perolas').css('margin-top','-95px');
 	}
+}
+
+function mostrarMsgResult(msg, src)
+{
+	if(window.localStorage.getItem('som') != 'false'){
+		if(msg.indexOf('Perdeu') != -1 ){
+			try{
+				var som = new Media("/android_asset/www/audio/laugh.mp3");
+				som.play(false);
+			}catch (e) {
+				console.log(e);
+			}
+		}else{
+			try{
+				var som = new Media("/android_asset/www/audio/applause.mp3");
+				som.play(false);
+			}catch (e) {
+				console.log(e);
+			}
+		}
+	}
+
+	$('#popup').show();
+	$('#tituloMsg').text(msg);
+	$('#imgMsg').attr('src',src);	
 }
 </script>
 </head>
@@ -217,5 +239,7 @@ function ajustarResolucao()
     </center>
   </div>
 </div>
+<div class="bubbles"></div>
+<script type="text/javascript" src="js/bubbles.js"></script>
 </body>
 </html>

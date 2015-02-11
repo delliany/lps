@@ -72,8 +72,8 @@ Media.get = function(id) {
 /**
  * Start or resume playing audio file.
  */
-Media.prototype.play = function(options) {
-    exec(null, null, "Media", "startPlayingAudio", [this.id, this.src, options]);
+Media.prototype.play = function(loop) {
+    exec(null, null, "Media", "startPlayingAudio", [this.id, this.src, loop]);
 };
 
 /**

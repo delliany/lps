@@ -23,7 +23,7 @@ function tocarMedia()
 
 		positionMedia = window.localStorage.getItem("position") || 0;
 		myMedia.seekTo(positionMedia*1000);
-		myMedia.play();
+		myMedia.play(true);
 	}catch (e) {
 		console.log(e);
 	}
