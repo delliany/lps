@@ -7,7 +7,6 @@
 <title>Opções</title>
 <link href="css/reset.css" rel="stylesheet" type="text/css">
 <link href="css/lps.css" rel="stylesheet" type="text/css">
-<link href="css/bubbles.css" rel="stylesheet" media="screen"  type="text/css">
 <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/lps.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
@@ -57,7 +56,18 @@ document.addEventListener("deviceready", function()
 				 window.localStorage.setItem('nivel',1);
 				break;
 			case 'Limpar Placar':
-				window.localStorage.removeItem('placar');
+				navigator.notification.confirm
+				(
+					'Deseja limpar todo o placar?',  // message
+		            function(botao)
+					{
+						if(botao == 2){
+							window.localStorage.removeItem('placar');
+						}
+					},         // callback
+		            'Atenção',
+		            ['N\u00e3o','Sim']
+		        );
 		}
 	});
 },false);
@@ -79,8 +89,6 @@ document.addEventListener("deviceready", function()
     </li>
   </ul>
 </div>
-<div class="bubbles"></div>
-<script type="text/javascript" src="js/bubbles.js"></script>
 <script>
 	if(window.innerHeight < 380){
 	   document.getElementsByClassName('titulo').item(0).style.top = '3px';

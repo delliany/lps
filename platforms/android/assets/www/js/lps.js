@@ -138,11 +138,19 @@ function jogoMedio()
 
 function retirarPerola(linha, coluna)
 {
+	if(window.localStorage.getItem('som') != 'false'){
+		try{
+			var som = new Media("/android_asset/www/audio/cork.mp3");
+			som.play(false);
+		}catch (e) {
+			console.log(e);
+		}
+	}
+	
 	var id = linha.toString().concat('',coluna.toString());
 
 	listaPerolas[linha][coluna] = 0;
-	//$('#'+id).fadeOut(500,"linear");
-	//$('#'+id).removeClass('perola');
+
 	$('#'+id).addClass('perola_animation');
 }
 

@@ -38,7 +38,7 @@ body {
 	position: relative;
 }
 .fundo_menu{
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#CFF4FF), to(#0089AB));
+	background: #0ECEFF;
 	background: -webkit-linear-gradient(#CFF4FF, #0ECEFF, #0089AB);
 	width: 100%;
 	height: 100%;	

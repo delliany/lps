@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, user-scalable=no" />
 <title>Jogo</title>
 <link href="css/lps.css" rel="stylesheet" type="text/css">
-<link href="css/bubbles.css" rel="stylesheet" media="screen"  type="text/css">
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/lps.js"></script>
@@ -231,15 +230,13 @@ function mostrarMsgResult(msg, src)
       <table width="100%" border="0" style="margin-top: 10px;">
         <tbody>
           <tr>
-            <td><input type="button" class="botao" value="Sim" onClick="window.location.reload();"></td>
             <td><input type="button" class="botao" value="Não" onClick="navigator.app.backHistory();"></td>
+            <td><input type="button" class="botao" value="Sim" onClick="window.location.reload();"></td>
           </tr>
         </tbody>
       </table>
     </center>
   </div>
 </div>
-<div class="bubbles"></div>
-<script type="text/javascript" src="js/bubbles.js"></script>
 </body>
 </html>
